@@ -1,7 +1,6 @@
 # Blood Bridge
 
-A new Flutter project.
-
+An android app that connects blood donors with those in need.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
