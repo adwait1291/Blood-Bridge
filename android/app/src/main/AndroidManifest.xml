@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.learn_auth">
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.example.blood_bridge">
    <application
-        android:label="learn_auth"
+        android:label="blood_bridge"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

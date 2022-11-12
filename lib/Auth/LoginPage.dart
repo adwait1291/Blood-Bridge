@@ -2,11 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learn_auth/Auth/fire_auth.dart';
-import 'package:learn_auth/Auth/registrationOptions.dart';
-import 'package:learn_auth/Screens/profile.dart';
-import 'package:learn_auth/Auth/Registration.dart';
-import 'package:learn_auth/Auth/widgets/customForm.dart';
+import 'package:blood_bridge/Auth/fireAuth.dart';
+import 'package:blood_bridge/Auth/registrationOptions.dart';
+import 'package:blood_bridge/Screens/mainScreen.dart';
+// import 'package:learn_auth/Screens/profile.dart';
+import 'package:blood_bridge/Auth/Registration.dart';
+import 'package:blood_bridge/Auth/widgets/customForm.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -33,10 +34,11 @@ class _LoginPageState extends State<LoginPage> {
     if (user != null) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => ProfilePage(
-            user: user,
-          ),
-        ),
+            builder: (context) =>
+                // ProfilePage(
+                //   user: user,
+                // ),
+                MainScreen()),
       );
     }
 
@@ -187,10 +189,10 @@ class _LoginPageState extends State<LoginPage> {
                                                       Navigator.of(context)
                                                           .pushReplacement(
                                                         MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ProfilePage(
-                                                                  user: user),
-                                                        ),
+                                                            builder: (context) =>
+                                                                // ProfilePage(
+                                                                //     user: user),
+                                                                MainScreen()),
                                                       );
                                                     }
                                                   }

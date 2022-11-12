@@ -44,40 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBonPtqMk7muObaWiyuPHV_LmB6ngcgfFY',
-    appId: '1:295839847760:web:17a70ee45b0102ca200855',
-    messagingSenderId: '295839847760',
-    projectId: 'project-blood-bank-20389',
-    authDomain: 'project-blood-bank-20389.firebaseapp.com',
-    storageBucket: 'project-blood-bank-20389.appspot.com',
-    measurementId: 'G-S380NZFQBH',
+    apiKey: 'AIzaSyDxQYWvPKjYaviGCP4vcTLvXAIJEJ9ivZw',
+    appId: '1:829371278833:web:6bb48f372406a371055050',
+    messagingSenderId: '829371278833',
+    projectId: 'blood-bridge',
+    authDomain: 'blood-bridge.firebaseapp.com',
+    storageBucket: 'blood-bridge.appspot.com',
+    measurementId: 'G-FW9QV7SNN0',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBV-Jqb4_OK_5pk4WHP4ZKfjfCeX_BModE',
-    appId: '1:295839847760:android:2f5136e1da5d28df200855',
-    messagingSenderId: '295839847760',
-    projectId: 'project-blood-bank-20389',
-    storageBucket: 'project-blood-bank-20389.appspot.com',
+    apiKey: 'AIzaSyACHVCEJw5rrxoVJHjZyRzxgYb-YPq38Cs',
+    appId: '1:829371278833:android:c8add1f618557690055050',
+    messagingSenderId: '829371278833',
+    projectId: 'blood-bridge',
+    storageBucket: 'blood-bridge.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBrFPu45ySorW9YndU62cK7aVObtP65-V8',
-    appId: '1:295839847760:ios:8f20d8bd01445e15200855',
-    messagingSenderId: '295839847760',
-    projectId: 'project-blood-bank-20389',
-    storageBucket: 'project-blood-bank-20389.appspot.com',
-    iosClientId: '295839847760-hqqtha0auvba32rjlf79lselut1fb8ij.apps.googleusercontent.com',
-    iosBundleId: 'com.example.learnAuth',
+    apiKey: 'AIzaSyD2z7M8rpV8p-x0MpvjSJeD5OluKTDtKgE',
+    appId: '1:829371278833:ios:9c0233a53162fc5c055050',
+    messagingSenderId: '829371278833',
+    projectId: 'blood-bridge',
+    storageBucket: 'blood-bridge.appspot.com',
+    iosClientId: '829371278833-ipnq0633k3frm7vh3kl9ie6ggdk1j35r.apps.googleusercontent.com',
+    iosBundleId: 'com.example.bloodBridge',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBrFPu45ySorW9YndU62cK7aVObtP65-V8',
-    appId: '1:295839847760:ios:8f20d8bd01445e15200855',
-    messagingSenderId: '295839847760',
-    projectId: 'project-blood-bank-20389',
-    storageBucket: 'project-blood-bank-20389.appspot.com',
-    iosClientId: '295839847760-hqqtha0auvba32rjlf79lselut1fb8ij.apps.googleusercontent.com',
-    iosBundleId: 'com.example.learnAuth',
+    apiKey: 'AIzaSyD2z7M8rpV8p-x0MpvjSJeD5OluKTDtKgE',
+    appId: '1:829371278833:ios:9c0233a53162fc5c055050',
+    messagingSenderId: '829371278833',
+    projectId: 'blood-bridge',
+    storageBucket: 'blood-bridge.appspot.com',
+    iosClientId: '829371278833-ipnq0633k3frm7vh3kl9ie6ggdk1j35r.apps.googleusercontent.com',
+    iosBundleId: 'com.example.bloodBridge',
   );
 }

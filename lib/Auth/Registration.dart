@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learn_auth/Auth/fire_auth.dart';
-import 'package:learn_auth/Auth/widgets/customForm.dart';
-import 'package:learn_auth/Screens/profile.dart';
+import 'package:blood_bridge/Auth/fireAuth.dart';
+import 'package:blood_bridge/Auth/widgets/customForm.dart';
+import 'package:blood_bridge/Screens/profile.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 {
-    "name": "learn_auth",
-    "short_name": "learn_auth",
+    "name": "blood_bridge",
+    "short_name": "blood_bridge",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

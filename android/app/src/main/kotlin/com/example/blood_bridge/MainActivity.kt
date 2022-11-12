@@ -1,4 +1,4 @@
-package com.example.learn_auth
+package com.example.blood_bridge
 
 import io.flutter.embedding.android.FlutterActivity
 

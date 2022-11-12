@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>295839847760-hqqtha0auvba32rjlf79lselut1fb8ij.apps.googleusercontent.com</string>
+	<string>829371278833-ipnq0633k3frm7vh3kl9ie6ggdk1j35r.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.295839847760-hqqtha0auvba32rjlf79lselut1fb8ij</string>
+	<string>com.googleusercontent.apps.829371278833-ipnq0633k3frm7vh3kl9ie6ggdk1j35r</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBrFPu45ySorW9YndU62cK7aVObtP65-V8</string>
+	<string>AIzaSyD2z7M8rpV8p-x0MpvjSJeD5OluKTDtKgE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>295839847760</string>
+	<string>829371278833</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.learnAuth</string>
+	<string>com.example.bloodBridge</string>
 	<key>PROJECT_ID</key>
-	<string>project-blood-bank-20389</string>
+	<string>blood-bridge</string>
 	<key>STORAGE_BUCKET</key>
-	<string>project-blood-bank-20389.appspot.com</string>
+	<string>blood-bridge.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:295839847760:ios:8f20d8bd01445e15200855</string>
+	<string>1:829371278833:ios:9c0233a53162fc5c055050</string>
 </dict>
 </plist>

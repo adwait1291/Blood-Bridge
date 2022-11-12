@@ -1,6 +1,8 @@
+import 'package:blood_bridge/Auth/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'Auth/LoginPage.dart';
+import 'package:blood_bridge/Screens/mainScreen.dart';
+import 'Auth/loginPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (context, child) {
         return MaterialApp(
-            title: 'Mess',
+            title: 'Blood Bridge',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learn_auth/Auth/Registration.dart';
+import 'package:blood_bridge/Auth/Registration.dart';
+import 'package:blood_bridge/Screens/mainScreen.dart';
 
 import '../Screens/profile.dart';
 
@@ -193,13 +194,13 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
                         ),
                       ),
                       onPressed: () async {
-                        Navigator.of(context).pushAndRemoveUntil(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => RegisterPage(
                               nameHint: checkedValue,
                             ),
+                            // MainScreen(),
                           ),
-                          ModalRoute.withName('/'),
                         );
                       },
                       child: Text(

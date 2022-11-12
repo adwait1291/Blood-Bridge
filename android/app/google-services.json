@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "295839847760",
-    "project_id": "project-blood-bank-20389",
-    "storage_bucket": "project-blood-bank-20389.appspot.com"
+    "project_number": "829371278833",
+    "project_id": "blood-bridge",
+    "storage_bucket": "blood-bridge.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:295839847760:android:2f5136e1da5d28df200855",
+        "mobilesdk_app_id": "1:829371278833:android:c8add1f618557690055050",
         "android_client_info": {
-          "package_name": "com.example.learn_auth"
+          "package_name": "com.example.blood_bridge"
         }
       },
       "oauth_client": [
         {
-          "client_id": "295839847760-1qfbm2o8rpe4nqicgk3epdtkomb4f39d.apps.googleusercontent.com",
+          "client_id": "829371278833-ig4dih9kvqaah2k33d3knbul523rc1cc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBV-Jqb4_OK_5pk4WHP4ZKfjfCeX_BModE"
+          "current_key": "AIzaSyACHVCEJw5rrxoVJHjZyRzxgYb-YPq38Cs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "295839847760-1qfbm2o8rpe4nqicgk3epdtkomb4f39d.apps.googleusercontent.com",
+              "client_id": "829371278833-ig4dih9kvqaah2k33d3knbul523rc1cc.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "295839847760-hqqtha0auvba32rjlf79lselut1fb8ij.apps.googleusercontent.com",
+              "client_id": "829371278833-ipnq0633k3frm7vh3kl9ie6ggdk1j35r.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.learnAuth"
+                "bundle_id": "com.example.bloodBridge"
               }
             }
           ]
