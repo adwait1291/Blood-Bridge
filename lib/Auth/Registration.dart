@@ -1,11 +1,15 @@
+import 'dart:ffi';
+
+import 'package:blood_bridge/Auth/widgets/customForm.dart';
 import 'package:blood_bridge/Screens/mainScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:blood_bridge/Auth/fireAuth.dart';
-import 'package:blood_bridge/Auth/widgets/customForm.dart';
+
+import 'fireAuth.dart';
+import 'loginPage.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -154,14 +158,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                     TextController: _passwordTextController,
                                   ),
                                   SizedBox(height: 30.h),
-                                  Container(
-                                    width: double.infinity,
-                                    child: Text("Mobile Number"),
-                                  ),
-                                  CustomForm(
-                                    hintTextValue: "Mobile Number",
-                                    TextController: _mobTextController,
-                                  ),
                                 ],
                               )
                             : Column(
@@ -192,6 +188,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                     hintTextValue: "Blood Group",
                                     TextController: _bloodGroupTextController,
                                   ),
+                                  SizedBox(height: 30.h),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Mobile Number"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Mobile Number",
+                                    TextController: _mobTextController,
+                                  ),
                                 ],
                               ),
                         SizedBox(height: 30.h),
@@ -200,8 +205,33 @@ class _RegisterPageState extends State<RegisterPage> {
                             : isLastPage == false
                                 ? Row(
                                     children: [
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.h),
+                                            ),
+                                          ),
+                                          onPressed: () async {
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginPage(),
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            'Back',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
                                       SizedBox(
-                                        width: 75.w,
+                                        width: 20.w,
                                       ),
                                       Expanded(
                                         child: ElevatedButton(
@@ -213,9 +243,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                             ),
                                           ),
                                           onPressed: () async {
-                                            setState(() {
-                                              isLastPage = true;
-                                            });
+                                            if (_registerFormKey.currentState!
+                                                .validate()) {
+                                              setState(() {
+                                                isLastPage = true;
+                                              });
+                                            }
                                           },
                                           child: Text(
                                             'Next',
@@ -224,15 +257,33 @@ class _RegisterPageState extends State<RegisterPage> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
-                                        width: 75.w,
-                                      ),
                                     ],
                                   )
                                 : Row(
                                     children: [
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.h),
+                                            ),
+                                          ),
+                                          onPressed: () async {
+                                            setState(() {
+                                              isLastPage = false;
+                                            });
+                                          },
+                                          child: Text(
+                                            'Back',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
                                       SizedBox(
-                                        width: 75.w,
+                                        width: 20.w,
                                       ),
                                       Expanded(
                                         child: ElevatedButton(
@@ -264,12 +315,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                               });
 
                                               if (user != null) {
-                                                _submitToDB(); //Submit to database
-                                                Navigator.of(context).push(
+                                                _submitToDB();
+                                                Navigator.of(context)
+                                                    .pushReplacement(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          // ProfilePage(
-                                                          //     user: user),
                                                           MainScreen(
                                                             user: user,
                                                           )),
@@ -283,9 +333,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 TextStyle(color: Colors.white),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 75.w,
                                       ),
                                     ],
                                   )

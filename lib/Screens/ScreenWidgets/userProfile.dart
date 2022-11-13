@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../Auth/loginPage.dart';
+
 class UserProfile extends StatefulWidget {
   static const routeName = '/menu';
   final User user;
@@ -14,10 +16,12 @@ class UserProfile extends StatefulWidget {
 }
 
 class _MenuPageState extends State<UserProfile> {
+  bool _isSigningOut = false;
   String bloodGroup = 'unknown';
   String phone = 'unkonwn';
   String location = 'unknown';
   String age = "unknown";
+  String gender = "";
   void getUserData() async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final currentUserData =
@@ -26,6 +30,7 @@ class _MenuPageState extends State<UserProfile> {
     phone = currentUserData['mobileNo'];
     bloodGroup = currentUserData['bloodGroup'];
     age = currentUserData['age'];
+    gender = currentUserData['gender'];
 
     setState(() {});
   }
@@ -46,7 +51,7 @@ class _MenuPageState extends State<UserProfile> {
             child: Container(
               child: Column(
                 children: [
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 18.h),
                   Center(
                     child: CircleAvatar(
                       backgroundColor: Color(0xFFF8E1E7),
@@ -54,17 +59,17 @@ class _MenuPageState extends State<UserProfile> {
                       child: CircleAvatar(
                         backgroundColor: Color.fromARGB(255, 255, 255, 255),
                         radius: 80,
-                        backgroundImage: AssetImage('assets/images/boy.png'),
+                        backgroundImage: gender=="Male"?AssetImage('assets/images/boy.png'):gender=="Female"?AssetImage('assets/images/girl.png'): AssetImage('assets/images/user.png'),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 15.h,
                   ),
                   Text(
                     "${widget.user.displayName}",
                     style: TextStyle(
-                        color: Color.fromARGB(252, 216, 85, 133),
+                        color: Color(0xFBD85585),
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w600),
                   ),
@@ -72,14 +77,14 @@ class _MenuPageState extends State<UserProfile> {
                     height: 15.h,
                   ),
                   Container(
-                    height: 135.h,
+                    height: 133.h,
                     decoration: BoxDecoration(
                         color: Color(0xFFF8E1E7),
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 20.h,
+                          height: 15.h,
                         ),
                         Row(
                           children: [
@@ -180,7 +185,7 @@ class _MenuPageState extends State<UserProfile> {
                     ),
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 10.h,
                   ),
                   Opacity(
                     opacity: 0.7,
@@ -190,12 +195,34 @@ class _MenuPageState extends State<UserProfile> {
                     ),
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 10.h,
                   ),
                   Text(
                     "Thank you for being a part of our Blood Bridge",
                     style: TextStyle(fontSize: 13.sp),
-                  )
+                  ),
+                  _isSigningOut
+                      ? CircularProgressIndicator()
+                      : TextButton(
+                          onPressed: () async {
+                            setState(() {
+                              _isSigningOut = true;
+                            });
+                            await FirebaseAuth.instance.signOut();
+                            setState(() {
+                              _isSigningOut = false;
+                            });
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Log out',
+                            style: TextStyle(color: Color(0xFBD85585)),
+                          ),
+                        ),
                 ],
               ),
             ),

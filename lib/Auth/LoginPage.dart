@@ -5,11 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:blood_bridge/Auth/fireAuth.dart';
 import 'package:blood_bridge/Auth/registrationOptions.dart';
 import 'package:blood_bridge/Screens/mainScreen.dart';
-// import 'package:learn_auth/Screens/profile.dart';
-import 'package:blood_bridge/Auth/Registration.dart';
 import 'package:blood_bridge/Auth/widgets/customForm.dart';
-
-import '../Screens/profile.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -34,13 +30,12 @@ class _LoginPageState extends State<LoginPage> {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => MainScreen(
             user: user,
           ),
         ),
-        // MainScreen()),
       );
     }
 
@@ -135,7 +130,8 @@ class _LoginPageState extends State<LoginPage> {
                                                   ),
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.of(context).push(
+                                                  Navigator.of(context)
+                                                      .pushReplacement(
                                                     MaterialPageRoute(
                                                       builder: (context) =>
                                                           RegistrationOptions(),
@@ -189,14 +185,14 @@ class _LoginPageState extends State<LoginPage> {
 
                                                     if (user != null) {
                                                       Navigator.of(context)
-                                                          .push(
+                                                          .pushReplacement(
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                // ProfilePage(
-                                                                //     user: user),
-                                                                MainScreen(
-                                                                  user: user,
-                                                                )),
+                                                            builder:
+                                                                (context) =>
+                                                                    MainScreen(
+                                                                      user:
+                                                                          user,
+                                                                    )),
                                                       );
                                                     }
                                                   }

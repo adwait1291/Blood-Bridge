@@ -1,3 +1,4 @@
+import 'package:blood_bridge/Auth/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:blood_bridge/Auth/Registration.dart';
 import 'package:blood_bridge/Screens/mainScreen.dart';
 
-import '../Screens/profile.dart';
+import '../Unused files/profile.dart';
 
 class RegistrationOptions extends StatefulWidget {
   @override
@@ -182,8 +183,29 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
               ),
               Row(
                 children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.h),
+                        ),
+                      ),
+                      onPressed: () async {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Back',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
                   SizedBox(
-                    width: 75.w,
+                    width: 20.w,
                   ),
                   Expanded(
                     child: ElevatedButton(
@@ -194,12 +216,11 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
                         ),
                       ),
                       onPressed: () async {
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (context) => RegisterPage(
                               nameHint: checkedValue,
                             ),
-                            // MainScreen(),
                           ),
                         );
                       },
@@ -208,9 +229,6 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 75.w,
                   ),
                 ],
               ),
