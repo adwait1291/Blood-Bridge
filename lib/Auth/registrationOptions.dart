@@ -43,26 +43,31 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(24.h),
+          padding: EdgeInsets.only(
+            left: 24.w,
+            right: 24.w,
+            top: 24.h,
+            bottom: 24.h,
+          ),
           child: Column(
             children: [
-              SizedBox(height: 30.h),
+              SizedBox(height: 10.h),
               Image.asset(
                 'assets/images/LOGO.png',
-                height: 90.h,
+                height: 60.h,
               ),
-              SizedBox(height: 50.h),
+              SizedBox(height: 20.h),
               Text(
                 "Who are you?",
                 style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 30.h,
-                    fontWeight: FontWeight.w600),
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.w500),
                 // textAlign: TextAlign.center,
               ),
-              SizedBox(height: 15.h),
+              SizedBox(height: 10.h),
               SizedBox(
-                height: 60.h,
+                height: 40.h,
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
@@ -76,7 +81,7 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFD7FDFF),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.h),
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
                   child: Row(
@@ -99,10 +104,10 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 15.h,
               ),
               SizedBox(
-                height: 60.h,
+                height: 40.h,
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
@@ -139,10 +144,10 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 15.h,
               ),
               SizedBox(
-                height: 60.h,
+                height: 40.h,
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
@@ -179,7 +184,7 @@ class _RegistrationOptionsState extends State<RegistrationOptions> {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 15.h,
               ),
               Row(
                 children: [

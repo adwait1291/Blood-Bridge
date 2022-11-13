@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../Widgets/DropDown.dart';
 import 'fireAuth.dart';
 import 'loginPage.dart';
 
@@ -22,6 +23,22 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _registerFormKey = GlobalKey<FormState>();
   bool isLastPage = false;
+  var gender = "";
+  var bloodGroup = "unknown";
+  final List<String> genderList = [
+    'Male',
+    'Female',
+  ];
+  final List<String> bloodGroupList = [
+    'O+',
+    'O-',
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'AB+',
+    'AB-'
+  ];
 
   final _nameTextController = TextEditingController();
   final _emailTextController = TextEditingController();
@@ -29,8 +46,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final _locationTextController = TextEditingController();
   final _mobTextController = TextEditingController();
   final _ageTextController = TextEditingController();
-  final _genderTextController = TextEditingController();
-  final _bloodGroupTextController = TextEditingController();
 
   final _focusName = FocusNode();
   final _focusEmail = FocusNode();
@@ -38,8 +53,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final _focusLocation = FocusNode();
   final _focusMob = FocusNode();
   final _focusAge = FocusNode();
-  final _focusBloodGroup = FocusNode();
-  final _focusGender = FocusNode();
 
   void _submitToDB() async {
     setState(() {
@@ -50,10 +63,8 @@ class _RegisterPageState extends State<RegisterPage> {
     final name = _nameTextController.text;
     final email = _emailTextController.text;
     final mobile = _mobTextController.text;
-    final gender = _genderTextController.text;
     final age = _ageTextController.text;
-    final bloodGroup = _bloodGroupTextController.text;
-    final userChoice = "Not Active";
+    var userChoice = "Not Active";
     var whoAreYou = widget.nameHint == 0
         ? "User"
         : widget.nameHint == 1
@@ -79,6 +90,14 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
+  void _handleGender(var value) {
+    gender = value;
+  }
+
+  void _handleBloodGroup(var value) {
+    bloodGroup = value;
+  }
+
   bool _isProcessing = false;
 
   @override
@@ -92,25 +111,29 @@ class _RegisterPageState extends State<RegisterPage> {
         _focusMob.unfocus();
         _focusAge.unfocus();
         _focusAge.unfocus();
-        _focusBloodGroup.unfocus();
       },
       child: SafeArea(
         child: Scaffold(
           body: Padding(
-            padding: EdgeInsets.all(24.h),
+            padding: EdgeInsets.only(
+              left: 24.w,
+              right: 24.w,
+              top: 24.h,
+              bottom: 24.h,
+            ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: 30.h),
+                  SizedBox(height: 10.h),
                   Image.asset(
                     'assets/images/LOGO.png',
-                    height: 90.h,
+                    height: 60.h,
                   ),
                   Form(
                     key: _registerFormKey,
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 30.h),
+                        SizedBox(height: 20.h),
                         isLastPage == false
                             ? Column(
                                 children: [
@@ -130,7 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             : "Blood Bank Name",
                                     TextController: _nameTextController,
                                   ),
-                                  SizedBox(height: 30.h),
+                                  SizedBox(height: 10.h),
                                   Container(
                                     width: double.infinity,
                                     child: Text("Addres"),
@@ -139,7 +162,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     hintTextValue: "Address",
                                     TextController: _locationTextController,
                                   ),
-                                  SizedBox(height: 30.h),
+                                  SizedBox(height: 10.h),
                                   Container(
                                     width: double.infinity,
                                     child: Text("Email"),
@@ -148,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     hintTextValue: "Email",
                                     TextController: _emailTextController,
                                   ),
-                                  SizedBox(height: 30.h),
+                                  SizedBox(height: 10.h),
                                   Container(
                                     width: double.infinity,
                                     child: Text("Password"),
@@ -157,7 +180,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                     hintTextValue: "Password",
                                     TextController: _passwordTextController,
                                   ),
-                                  SizedBox(height: 30.h),
                                 ],
                               )
                             : Column(
@@ -170,25 +192,27 @@ class _RegisterPageState extends State<RegisterPage> {
                                     hintTextValue: "Age",
                                     TextController: _ageTextController,
                                   ),
-                                  SizedBox(height: 30.h),
+                                  SizedBox(height: 10.h),
                                   Container(
                                     width: double.infinity,
                                     child: Text("Gender"),
                                   ),
-                                  CustomForm(
-                                    hintTextValue: "Gender",
-                                    TextController: _genderTextController,
+                                  DropDown(
+                                    items: genderList,
+                                    dropDownHandler: _handleGender,
+                                    text: "Gender",
                                   ),
-                                  SizedBox(height: 30.h),
+                                  SizedBox(height: 10.h),
                                   Container(
                                     width: double.infinity,
                                     child: Text("Blood Group"),
                                   ),
-                                  CustomForm(
-                                    hintTextValue: "Blood Group",
-                                    TextController: _bloodGroupTextController,
+                                  DropDown(
+                                    items: bloodGroupList,
+                                    dropDownHandler: _handleBloodGroup,
+                                    text: "Blood Group",
                                   ),
-                                  SizedBox(height: 30.h),
+                                  SizedBox(height: 10.h),
                                   Container(
                                     width: double.infinity,
                                     child: Text("Mobile Number"),
@@ -199,7 +223,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                 ],
                               ),
-                        SizedBox(height: 30.h),
+                        SizedBox(height: 20.h),
                         _isProcessing
                             ? CircularProgressIndicator()
                             : isLastPage == false
@@ -211,7 +235,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             backgroundColor: Colors.black,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15.h),
+                                                  BorderRadius.circular(15.r),
                                             ),
                                           ),
                                           onPressed: () async {
@@ -239,7 +263,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             backgroundColor: Colors.black,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15.h),
+                                                  BorderRadius.circular(15.r),
                                             ),
                                           ),
                                           onPressed: () async {
@@ -267,7 +291,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             backgroundColor: Colors.black,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15.h),
+                                                  BorderRadius.circular(15.r),
                                             ),
                                           ),
                                           onPressed: () async {
@@ -291,7 +315,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                             backgroundColor: Colors.black,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15.h),
+                                                  BorderRadius.circular(15.r),
                                             ),
                                           ),
                                           onPressed: () async {
@@ -300,6 +324,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                               setState(() {
                                                 _isProcessing = true;
                                               });
+
                                               User? user = await FireAuth
                                                   .registerUsingEmailPassword(
                                                 name: _nameTextController.text,

@@ -19,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40.h),
@@ -35,10 +35,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
               tabBackgroundColor:
                   Color.fromARGB(255, 157, 67, 84), //Colors.blueGrey,
               haptic: true, // haptic feedback
-              tabBorderRadius: 40.h,
+              tabBorderRadius: 40.r,
               curve: Curves.easeInOutCubic, // tab animation curves
               iconSize: 25.w,
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 3.h),
 
               tabs: [
                 GButton(

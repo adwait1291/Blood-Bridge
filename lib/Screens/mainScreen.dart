@@ -28,9 +28,9 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     TextStyle TitleStyle = TextStyle(
-        color: Color(0xFFA50D41), fontSize: 25, fontWeight: FontWeight.bold);
+        color: Color(0xFFA50D41), fontSize: 25.sp, fontWeight: FontWeight.bold);
 
-    List<String> TextList = ["Hi, ${widget.user.displayName}!", "Profile"];
+    List<String> TextList = ["Hi, ${widget.user.displayName!.split(" ")[0]}!", "Profile"];
     List<Widget> _widgetOptions = <Widget>[
       UserHome(),
       UserProfile(
@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60.h),
+          preferredSize: Size.fromHeight(40.h),
           child: AppBar(
             centerTitle: _selectedIndex == 1,
             backgroundColor: Color.fromARGB(255, 255, 255, 255),

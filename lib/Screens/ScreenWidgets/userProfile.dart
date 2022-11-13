@@ -47,44 +47,48 @@ class _MenuPageState extends State<UserProfile> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(left: 20.w, right: 20.w),
             child: Container(
               child: Column(
                 children: [
-                  SizedBox(height: 18.h),
+                  SizedBox(height: 10.h),
                   Center(
                     child: CircleAvatar(
                       backgroundColor: Color(0xFFF8E1E7),
-                      radius: 90,
+                      radius: 60.r,
                       child: CircleAvatar(
                         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                        radius: 80,
-                        backgroundImage: gender=="Male"?AssetImage('assets/images/boy.png'):gender=="Female"?AssetImage('assets/images/girl.png'): AssetImage('assets/images/user.png'),
+                        radius: 50.r,
+                        backgroundImage: gender == "Male"
+                            ? AssetImage('assets/images/boy.png')
+                            : gender == "Female"
+                                ? AssetImage('assets/images/girl.png')
+                                : AssetImage('assets/images/user.png'),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 15.h,
+                    height: 8.h,
                   ),
                   Text(
                     "${widget.user.displayName}",
                     style: TextStyle(
                         color: Color(0xFBD85585),
-                        fontSize: 20.sp,
+                        fontSize: 19.sp,
                         fontWeight: FontWeight.w600),
                   ),
                   SizedBox(
-                    height: 15.h,
+                    height: 10.h,
                   ),
                   Container(
-                    height: 133.h,
+                    height: 82.h,
                     decoration: BoxDecoration(
                         color: Color(0xFFF8E1E7),
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 15.h,
+                          height: 10.h,
                         ),
                         Row(
                           children: [
@@ -96,13 +100,13 @@ class _MenuPageState extends State<UserProfile> {
                               child: Text(
                                 "Age",
                                 style: TextStyle(
-                                    fontSize: 15.sp, color: Colors.black54),
+                                    fontSize: 13.sp, color: Colors.black54),
                               ),
                             ),
                             Container(
                               child: Text(
                                 age,
-                                style: TextStyle(fontSize: 15.sp),
+                                style: TextStyle(fontSize: 13.sp),
                               ),
                             ),
                           ],
@@ -120,13 +124,13 @@ class _MenuPageState extends State<UserProfile> {
                               child: Text(
                                 "Blood Group",
                                 style: TextStyle(
-                                    fontSize: 15.sp, color: Colors.black54),
+                                    fontSize: 13.sp, color: Colors.black54),
                               ),
                             ),
                             Container(
                               child: Text(
                                 bloodGroup,
-                                style: TextStyle(fontSize: 15.sp),
+                                style: TextStyle(fontSize: 13.sp),
                               ),
                             ),
                           ],
@@ -144,7 +148,7 @@ class _MenuPageState extends State<UserProfile> {
                               child: Text(
                                 "Location",
                                 style: TextStyle(
-                                    fontSize: 15.sp, color: Colors.black54),
+                                    fontSize: 13.sp, color: Colors.black54),
                               ),
                             ),
                             Container(
@@ -152,7 +156,7 @@ class _MenuPageState extends State<UserProfile> {
                                 location.length > 20
                                     ? location.substring(0, 17) + "..."
                                     : location,
-                                style: TextStyle(fontSize: 15.sp),
+                                style: TextStyle(fontSize: 13.sp),
                               ),
                             ),
                           ],
@@ -170,13 +174,13 @@ class _MenuPageState extends State<UserProfile> {
                               child: Text(
                                 "Phone no.",
                                 style: TextStyle(
-                                    fontSize: 15.sp, color: Colors.black54),
+                                    fontSize: 13.sp, color: Colors.black54),
                               ),
                             ),
                             Container(
                               child: Text(
                                 phone,
-                                style: TextStyle(fontSize: 15.sp),
+                                style: TextStyle(fontSize: 13.sp),
                               ),
                             ),
                           ],
@@ -192,6 +196,7 @@ class _MenuPageState extends State<UserProfile> {
                     child: Image.asset(
                       'assets/images/profileImage.png',
                       colorBlendMode: BlendMode.color,
+                      height: 80.h,
                     ),
                   ),
                   SizedBox(

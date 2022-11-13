@@ -15,25 +15,25 @@ class _UserHomeState extends State<UserHome> {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
+        padding: EdgeInsets.only(left: 20.w, right: 20.w),
         child: Column(
           children: [
             SizedBox(
-              height: 50.h,
+              height: 20.h,
             ),
             Container(
               child: Column(
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 200.h,
+                    height: 130.h,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(20.r),
+                      borderRadius: BorderRadius.circular(15.r),
                       boxShadow: [
                         BoxShadow(
                             color: Color.fromARGB(255, 187, 186, 186),
-                            blurRadius: 2,
+                            blurRadius: 2.r,
                             blurStyle: BlurStyle.outer,
                             offset: const Offset(0, 2)),
                       ],
@@ -62,14 +62,14 @@ class _UserHomeState extends State<UserHome> {
                   ),
                   Container(
                     width: double.infinity,
-                    height: 200.h,
+                    height: 130.h,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(20.r),
+                      borderRadius: BorderRadius.circular(15.r),
                       boxShadow: [
                         BoxShadow(
                             color: Color.fromARGB(255, 187, 186, 186),
-                            blurRadius: 2,
+                            blurRadius: 2.r,
                             blurStyle: BlurStyle.outer,
                             offset: const Offset(0, 2)),
                       ],

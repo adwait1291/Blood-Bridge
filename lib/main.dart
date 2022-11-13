@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      designSize: Size(361, 428),
       builder: (context, child) {
         return MaterialApp(
             title: 'Blood Bridge',

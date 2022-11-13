@@ -14,7 +14,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _nameTextController = TextEditingController();
@@ -56,27 +55,27 @@ class _LoginPageState extends State<LoginPage> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 return Padding(
-                  padding: EdgeInsets.only(left: 24.h, right: 24.h),
+                  padding: EdgeInsets.only(left: 24.w, right: 24.w),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
                         Column(
                           children: [
                             SizedBox(
-                              height: 35.h,
+                              height: 15.h,
                             ),
                             Image.asset(
                               'assets/images/login.png',
                               fit: BoxFit.cover,
                             ),
                             SizedBox(
-                              height: 30.h,
+                              height: 10.h,
                             ),
                             Text(
                               "Log In",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 0, 0, 0),
-                                  fontSize: 30.h,
+                                  fontSize: 30.sp,
                                   fontWeight: FontWeight.w600),
                             ),
                             Form(
@@ -84,21 +83,21 @@ class _LoginPageState extends State<LoginPage> {
                               child: Column(
                                 children: <Widget>[
                                   SizedBox(
-                                    height: 30.h,
+                                    height: 10.h,
                                   ),
                                   CustomForm(
                                     hintTextValue: "Email",
                                     TextController: _emailTextController,
                                   ),
                                   SizedBox(
-                                    height: 30.h,
+                                    height: 10.h,
                                   ),
                                   CustomForm(
                                     hintTextValue: "Password",
                                     TextController: _passwordTextController,
                                   ),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 8.h,
                                   ),
                                   Container(
                                     width: double.infinity,
@@ -111,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 10.h,
                                   ),
                                   _isProcessing
                                       ? CircularProgressIndicator()
@@ -126,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            15.h),
+                                                            15.r),
                                                   ),
                                                 ),
                                                 onPressed: () {
@@ -156,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            15.h),
+                                                            15.r),
                                                   ),
                                                 ),
                                                 onPressed: () async {
@@ -187,12 +186,11 @@ class _LoginPageState extends State<LoginPage> {
                                                       Navigator.of(context)
                                                           .pushReplacement(
                                                         MaterialPageRoute(
-                                                            builder:
-                                                                (context) =>
-                                                                    MainScreen(
-                                                                      user:
-                                                                          user,
-                                                                    )),
+                                                          builder: (context) =>
+                                                              MainScreen(
+                                                            user: user,
+                                                          ),
+                                                        ),
                                                       );
                                                     }
                                                   }
@@ -207,11 +205,11 @@ class _LoginPageState extends State<LoginPage> {
                                           ],
                                         ),
                                   SizedBox(
-                                    height: 50.h,
+                                    height: 20.h,
                                   ),
                                   Image.asset(
                                     'assets/images/LOGO.png',
-                                    height: 60.h,
+                                    height: 30.h,
                                   ),
                                 ],
                               ),

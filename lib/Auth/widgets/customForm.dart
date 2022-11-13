@@ -41,7 +41,7 @@ class CustomForm extends StatelessWidget {
         filled: true,
         fillColor: Color(0xFFF9DEE4),
         contentPadding: EdgeInsets.only(
-          left: 18.h,
+          left: 24.w,
           bottom: 6.h,
           top: 8.h,
         ),

@@ -1,7 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FireAuth {
   // For registering a new user
+  static void showError(message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        textColor: Colors.white,
+        fontSize: 10.0);
+  }
+
   static Future<User?> registerUsingEmailPassword({
     required String name,
     required String email,
@@ -22,12 +35,12 @@ class FireAuth {
       user = auth.currentUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        showError('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        showError('The account already exists for that email.');
       }
     } catch (e) {
-      print(e);
+      showError(e);
     }
 
     return user;
@@ -49,9 +62,11 @@ class FireAuth {
       user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        showError('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided.');
+        showError('Wrong password provided.');
+      } else {
+        showError(e);
       }
     }
 
