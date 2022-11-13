@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables, constant_identifier_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:blood_bridge/Screens/ScreenWidgets/userHome.dart';
@@ -8,8 +10,8 @@ import 'package:blood_bridge/Screens/ScreenWidgets/userProfile.dart';
 import '../Widgets/BottomNavBar.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-  //const MainScreen({super.key});
+  final User user;
+  MainScreen({required this.user});
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -21,19 +23,6 @@ class _MainScreenState extends State<MainScreen> {
     UserProfile(),
   ];
 
-  static const TextStyle TitleStyle = TextStyle(color: Colors.white);
-
-  static List<Widget> _widgetNames = <Widget>[
-    Text(
-      "Home",
-      style: TitleStyle,
-    ),
-    Text(
-      "Profile",
-      style: TitleStyle,
-    ),
-  ];
-
   void _manageSelectedIndex(int index) {
     setState(() {
       _selectedIndex = index;
@@ -42,24 +31,31 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[
-            Color.fromARGB(255, 217, 224, 230),
-            Color(0xFF000A12),
-          ],
-        ),
-      ),
+    TextStyle TitleStyle = TextStyle(
+        color: Color(0xFFA50D41), fontSize: 25, fontWeight: FontWeight.bold);
+
+    List<String> TextList = ["Hi, ${widget.user.displayName}!", "Profile"];
+
+    return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.transparent,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50.h),
+          preferredSize: Size.fromHeight(60.h),
           child: AppBar(
-              backgroundColor: Colors.transparent,
-              title: _widgetNames.elementAt(_selectedIndex)),
+            centerTitle: _selectedIndex == 1,
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            leadingWidth: 0,
+            toolbarHeight: 100.h,
+            title: Column(
+              children: [
+                SizedBox(height: 15.h),
+                Text(
+                  TextList[_selectedIndex],
+                  style: TitleStyle,
+                ),
+              ],
+            ),
+            elevation: 0.8,
+          ),
         ),
         body: _widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar:

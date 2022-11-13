@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,6 +29,38 @@ class _RegisterPageState extends State<RegisterPage> {
   final _focusPassword = FocusNode();
   final _focusLocation = FocusNode();
   final _focusMob = FocusNode();
+
+  void _submitToDB() async {
+    setState(() {
+      _isProcessing = false;
+    });
+    final curUser = FirebaseAuth.instance.currentUser;
+    final location = _locationTextController.text;
+    final name = _nameTextController.text;
+    final email = _emailTextController.text;
+    final mobile = _mobTextController.text;
+    final userChoice = "Not Active";
+    var whoAreYou = widget.nameHint == 0
+        ? "User"
+        : widget.nameHint == 1
+            ? "Hospital"
+            : "Blood Bank";
+
+    await FirebaseFirestore.instance.collection('users').doc(curUser!.uid).set(
+      {
+        'name': name,
+        'phone': email,
+        'location': location,
+        'mobileNo': mobile,
+        'userChoice': userChoice,
+        'whoAreYou': whoAreYou
+      },
+    );
+
+    setState(() {
+      _isProcessing = false;
+    });
+  }
 
   bool _isProcessing = false;
 
@@ -150,6 +183,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           });
 
                                           if (user != null) {
+                                            _submitToDB(); //Submit to database
                                             Navigator.of(context)
                                                 .pushAndRemoveUntil(
                                               MaterialPageRoute(

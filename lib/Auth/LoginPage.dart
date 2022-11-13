@@ -9,6 +9,8 @@ import 'package:blood_bridge/Screens/mainScreen.dart';
 import 'package:blood_bridge/Auth/Registration.dart';
 import 'package:blood_bridge/Auth/widgets/customForm.dart';
 
+import '../Screens/profile.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -32,13 +34,13 @@ class _LoginPageState extends State<LoginPage> {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
         MaterialPageRoute(
-            builder: (context) =>
-                // ProfilePage(
-                //   user: user,
-                // ),
-                MainScreen()),
+          builder: (context) => MainScreen(
+            user: user,
+          ),
+        ),
+        // MainScreen()),
       );
     }
 
@@ -154,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                                               child: ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor:
-                                                      Colors.red[300],
+                                                      Color(0xFFE57373),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -192,7 +194,9 @@ class _LoginPageState extends State<LoginPage> {
                                                             builder: (context) =>
                                                                 // ProfilePage(
                                                                 //     user: user),
-                                                                MainScreen()),
+                                                                MainScreen(
+                                                                  user: user,
+                                                                )),
                                                       );
                                                     }
                                                   }
