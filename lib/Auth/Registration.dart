@@ -1,3 +1,4 @@
+import 'package:blood_bridge/Screens/mainScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:blood_bridge/Auth/fireAuth.dart';
 import 'package:blood_bridge/Auth/widgets/customForm.dart';
-import 'package:blood_bridge/Screens/profile.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -17,18 +17,25 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _registerFormKey = GlobalKey<FormState>();
+  bool isLastPage = false;
 
   final _nameTextController = TextEditingController();
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
   final _locationTextController = TextEditingController();
   final _mobTextController = TextEditingController();
+  final _ageTextController = TextEditingController();
+  final _genderTextController = TextEditingController();
+  final _bloodGroupTextController = TextEditingController();
 
   final _focusName = FocusNode();
   final _focusEmail = FocusNode();
   final _focusPassword = FocusNode();
   final _focusLocation = FocusNode();
   final _focusMob = FocusNode();
+  final _focusAge = FocusNode();
+  final _focusBloodGroup = FocusNode();
+  final _focusGender = FocusNode();
 
   void _submitToDB() async {
     setState(() {
@@ -39,6 +46,9 @@ class _RegisterPageState extends State<RegisterPage> {
     final name = _nameTextController.text;
     final email = _emailTextController.text;
     final mobile = _mobTextController.text;
+    final gender = _genderTextController.text;
+    final age = _ageTextController.text;
+    final bloodGroup = _bloodGroupTextController.text;
     final userChoice = "Not Active";
     var whoAreYou = widget.nameHint == 0
         ? "User"
@@ -53,7 +63,10 @@ class _RegisterPageState extends State<RegisterPage> {
         'location': location,
         'mobileNo': mobile,
         'userChoice': userChoice,
-        'whoAreYou': whoAreYou
+        'whoAreYou': whoAreYou,
+        'age': age,
+        'bloodGroup': bloodGroup,
+        'gender': gender,
       },
     );
 
@@ -73,6 +86,9 @@ class _RegisterPageState extends State<RegisterPage> {
         _focusPassword.unfocus();
         _focusLocation.unfocus();
         _focusMob.unfocus();
+        _focusAge.unfocus();
+        _focusAge.unfocus();
+        _focusBloodGroup.unfocus();
       },
       child: SafeArea(
         child: Scaffold(
@@ -81,131 +97,198 @@ class _RegisterPageState extends State<RegisterPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  SizedBox(height: 30.h),
+                  Image.asset(
+                    'assets/images/LOGO.png',
+                    height: 90.h,
+                  ),
                   Form(
                     key: _registerFormKey,
                     child: Column(
                       children: <Widget>[
                         SizedBox(height: 30.h),
-                        Image.asset(
-                          'assets/images/LOGO.png',
-                          height: 90.h,
-                        ),
-                        SizedBox(height: 30.h),
-                        Column(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              child: Text(widget.nameHint == 1
-                                  ? "Hospital Name"
-                                  : (widget.nameHint == 0
-                                      ? "Name"
-                                      : "Blood Bank Name")),
-                            ),
-                          ],
-                        ),
-                        CustomForm(
-                          hintTextValue: widget.nameHint == 1
-                              ? "Hospital Name"
-                              : widget.nameHint == 0
-                                  ? "Name"
-                                  : "Blood Bank Name",
-                          TextController: _nameTextController,
-                        ),
-                        SizedBox(height: 30.h),
-                        Container(
-                          width: double.infinity,
-                          child: Text("Addres"),
-                        ),
-                        CustomForm(
-                          hintTextValue: "Address",
-                          TextController: _locationTextController,
-                        ),
-                        SizedBox(height: 30.h),
-                        Container(
-                          width: double.infinity,
-                          child: Text("Email"),
-                        ),
-                        CustomForm(
-                          hintTextValue: "Email",
-                          TextController: _emailTextController,
-                        ),
-                        SizedBox(height: 30.h),
-                        Container(
-                          width: double.infinity,
-                          child: Text("Password"),
-                        ),
-                        CustomForm(
-                          hintTextValue: "Password",
-                          TextController: _passwordTextController,
-                        ),
-                        SizedBox(height: 30.h),
-                        Container(
-                          width: double.infinity,
-                          child: Text("Mobile Number"),
-                        ),
-                        CustomForm(
-                          hintTextValue: "Mobile Number",
-                          TextController: _mobTextController,
-                        ),
-                        SizedBox(height: 30.h),
-                        _isProcessing
-                            ? CircularProgressIndicator()
-                            : Row(
+                        isLastPage == false
+                            ? Column(
                                 children: [
-                                  SizedBox(
-                                    width: 75.w,
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text(widget.nameHint == 1
+                                        ? "Hospital Name"
+                                        : (widget.nameHint == 0
+                                            ? "Name"
+                                            : "Blood Bank Name")),
                                   ),
-                                  Expanded(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.black,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.h),
-                                        ),
-                                      ),
-                                      onPressed: () async {
-                                        if (_registerFormKey.currentState!
-                                            .validate()) {
-                                          setState(() {
-                                            _isProcessing = true;
-                                          });
-                                          User? user = await FireAuth
-                                              .registerUsingEmailPassword(
-                                            name: _nameTextController.text,
-                                            email: _emailTextController.text,
-                                            password:
-                                                _passwordTextController.text,
-                                          );
-
-                                          setState(() {
-                                            _isProcessing = false;
-                                          });
-
-                                          if (user != null) {
-                                            _submitToDB(); //Submit to database
-                                            Navigator.of(context)
-                                                .pushAndRemoveUntil(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ProfilePage(user: user),
-                                              ),
-                                              ModalRoute.withName('/'),
-                                            );
-                                          }
-                                        }
-                                      },
-                                      child: Text(
-                                        'Register',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
+                                  CustomForm(
+                                    hintTextValue: widget.nameHint == 1
+                                        ? "Hospital Name"
+                                        : widget.nameHint == 0
+                                            ? "Name"
+                                            : "Blood Bank Name",
+                                    TextController: _nameTextController,
                                   ),
-                                  SizedBox(
-                                    width: 75.w,
+                                  SizedBox(height: 30.h),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Addres"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Address",
+                                    TextController: _locationTextController,
+                                  ),
+                                  SizedBox(height: 30.h),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Email"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Email",
+                                    TextController: _emailTextController,
+                                  ),
+                                  SizedBox(height: 30.h),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Password"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Password",
+                                    TextController: _passwordTextController,
+                                  ),
+                                  SizedBox(height: 30.h),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Mobile Number"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Mobile Number",
+                                    TextController: _mobTextController,
                                   ),
                                 ],
                               )
+                            : Column(
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Age"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Age",
+                                    TextController: _ageTextController,
+                                  ),
+                                  SizedBox(height: 30.h),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Gender"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Gender",
+                                    TextController: _genderTextController,
+                                  ),
+                                  SizedBox(height: 30.h),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Text("Blood Group"),
+                                  ),
+                                  CustomForm(
+                                    hintTextValue: "Blood Group",
+                                    TextController: _bloodGroupTextController,
+                                  ),
+                                ],
+                              ),
+                        SizedBox(height: 30.h),
+                        _isProcessing
+                            ? CircularProgressIndicator()
+                            : isLastPage == false
+                                ? Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 75.w,
+                                      ),
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.h),
+                                            ),
+                                          ),
+                                          onPressed: () async {
+                                            setState(() {
+                                              isLastPage = true;
+                                            });
+                                          },
+                                          child: Text(
+                                            'Next',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 75.w,
+                                      ),
+                                    ],
+                                  )
+                                : Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 75.w,
+                                      ),
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.h),
+                                            ),
+                                          ),
+                                          onPressed: () async {
+                                            if (_registerFormKey.currentState!
+                                                .validate()) {
+                                              setState(() {
+                                                _isProcessing = true;
+                                              });
+                                              User? user = await FireAuth
+                                                  .registerUsingEmailPassword(
+                                                name: _nameTextController.text,
+                                                email:
+                                                    _emailTextController.text,
+                                                password:
+                                                    _passwordTextController
+                                                        .text,
+                                              );
+
+                                              setState(() {
+                                                _isProcessing = false;
+                                              });
+
+                                              if (user != null) {
+                                                _submitToDB(); //Submit to database
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          // ProfilePage(
+                                                          //     user: user),
+                                                          MainScreen(
+                                                            user: user,
+                                                          )),
+                                                );
+                                              }
+                                            }
+                                          },
+                                          child: Text(
+                                            'Register',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 75.w,
+                                      ),
+                                    ],
+                                  )
                       ],
                     ),
                   ),

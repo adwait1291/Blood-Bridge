@@ -18,10 +18,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    UserHome(),
-    UserProfile(),
-  ];
 
   void _manageSelectedIndex(int index) {
     setState(() {
@@ -35,6 +31,12 @@ class _MainScreenState extends State<MainScreen> {
         color: Color(0xFFA50D41), fontSize: 25, fontWeight: FontWeight.bold);
 
     List<String> TextList = ["Hi, ${widget.user.displayName}!", "Profile"];
+    List<Widget> _widgetOptions = <Widget>[
+      UserHome(),
+      UserProfile(
+        user: widget.user,
+      ),
+    ];
 
     return SafeArea(
       child: Scaffold(

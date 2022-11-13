@@ -41,8 +41,11 @@ class _UserHomeState extends State<UserHome> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/mainScreenImage.png',
+                        Opacity(
+                          opacity: 0.8,
+                          child: Image.asset(
+                            'assets/images/mainScreenImage.png',
+                          ),
                         ),
                         SizedBox(
                           height: 15.h,
@@ -74,8 +77,11 @@ class _UserHomeState extends State<UserHome> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/mainScreenImage2.png',
+                        Opacity(
+                          opacity: 0.8,
+                          child: Image.asset(
+                            'assets/images/mainScreenImage2.png',
+                          ),
                         ),
                         SizedBox(
                           height: 15.h,
