@@ -43,12 +43,12 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _focusEmail.unfocus();
-        _focusPassword.unfocus();
-      },
-      child: SafeArea(
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () {
+          _focusEmail.unfocus();
+          _focusPassword.unfocus();
+        },
         child: Scaffold(
           body: FutureBuilder(
             future: _initializeFirebase(),
@@ -62,14 +62,14 @@ class _LoginPageState extends State<LoginPage> {
                         Column(
                           children: [
                             SizedBox(
-                              height: 15.h,
+                              height: 30.h,
                             ),
                             Image.asset(
                               'assets/images/login.png',
                               fit: BoxFit.cover,
                             ),
                             SizedBox(
-                              height: 10.h,
+                              height: 25.h,
                             ),
                             Text(
                               "Log In",
@@ -83,14 +83,14 @@ class _LoginPageState extends State<LoginPage> {
                               child: Column(
                                 children: <Widget>[
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 13.h,
                                   ),
                                   CustomForm(
                                     hintTextValue: "Email",
                                     TextController: _emailTextController,
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 13.h,
                                   ),
                                   CustomForm(
                                     hintTextValue: "Password",
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 13.h,
                                   ),
                                   _isProcessing
                                       ? CircularProgressIndicator()
@@ -205,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                                           ],
                                         ),
                                   SizedBox(
-                                    height: 20.h,
+                                    height: 30.h,
                                   ),
                                   Image.asset(
                                     'assets/images/LOGO.png',

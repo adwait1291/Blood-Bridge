@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_final_fields, prefer_const_literals_to_create_immutables, constant_identifier_names
 
+import 'package:blood_bridge/Screens/ScreenWidgets/bankHome.dart';
+import 'package:blood_bridge/Screens/ScreenWidgets/bankProfile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,8 @@ import 'package:blood_bridge/Screens/ScreenWidgets/userHome.dart';
 import 'package:blood_bridge/Screens/ScreenWidgets/userProfile.dart';
 
 import '../Widgets/BottomNavBar.dart';
+import 'ScreenWidgets/hospitalHome.dart';
+import 'ScreenWidgets/hospitalProfile.dart';
 
 class MainScreen extends StatefulWidget {
   final User user;
@@ -25,18 +29,48 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  String whoAreYou = "";
+  void getUserData() async {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final currentUserData =
+        await FirebaseFirestore.instance.doc('users/' + uid!).get();
+
+    whoAreYou = currentUserData['whoAreYou'];
+
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
   @override
   Widget build(BuildContext context) {
     TextStyle TitleStyle = TextStyle(
         color: Color(0xFFA50D41), fontSize: 25.sp, fontWeight: FontWeight.bold);
 
-    List<String> TextList = ["Hi, ${widget.user.displayName!.split(" ")[0]}!", "Profile"];
-    List<Widget> _widgetOptions = <Widget>[
-      UserHome(),
-      UserProfile(
-        user: widget.user,
-      ),
+    List<String> TextList = [
+      "Hi, ${widget.user.displayName!.split(" ")[0]}!",
+      "Profile"
     ];
+    List<Widget> _widgetOptions = whoAreYou == 'User'
+        ? <Widget>[
+            UserHome(),
+            UserProfile(
+              user: widget.user,
+            ),
+          ]
+        : whoAreYou == 'Hospital'
+            ? <Widget>[
+                HospitalHome(),
+                HospitalProfile(),
+              ]
+            : <Widget>[
+                BankHome(),
+                BankProfile(),
+              ];
 
     return SafeArea(
       child: Scaffold(

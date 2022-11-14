@@ -55,10 +55,10 @@ class _MenuPageState extends State<UserProfile> {
                   Center(
                     child: CircleAvatar(
                       backgroundColor: Color(0xFFF8E1E7),
-                      radius: 60.r,
+                      radius: 80.r,
                       child: CircleAvatar(
                         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                        radius: 50.r,
+                        radius: 70.r,
                         backgroundImage: gender == "Male"
                             ? AssetImage('assets/images/boy.png')
                             : gender == "Female"

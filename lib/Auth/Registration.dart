@@ -26,10 +26,12 @@ class _RegisterPageState extends State<RegisterPage> {
   var gender = "";
   var bloodGroup = "unknown";
   final List<String> genderList = [
+    'Not Applicable',
     'Male',
     'Female',
   ];
   final List<String> bloodGroupList = [
+    'Not Applicable',
     'O+',
     'O-',
     'A+',
@@ -82,6 +84,9 @@ class _RegisterPageState extends State<RegisterPage> {
         'age': age,
         'bloodGroup': bloodGroup,
         'gender': gender,
+        'matchedDonor': null,
+        'donorTime': null,
+        'receiverQuantity': null
       },
     );
 
