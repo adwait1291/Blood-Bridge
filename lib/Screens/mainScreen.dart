@@ -52,7 +52,9 @@ class _MainScreenState extends State<MainScreen> {
         color: Color(0xFFA50D41), fontSize: 25.sp, fontWeight: FontWeight.bold);
 
     List<String> TextList = [
-      "Hi, ${widget.user.displayName!.split(" ")[0]}!",
+      whoAreYou == 'User'
+          ? "Hi, ${widget.user.displayName!.split(" ")[0]}!"
+          : widget.user.displayName!,
       "Profile"
     ];
     List<Widget> _widgetOptions = whoAreYou == 'User'
@@ -65,11 +67,15 @@ class _MainScreenState extends State<MainScreen> {
         : whoAreYou == 'Hospital'
             ? <Widget>[
                 HospitalHome(),
-                HospitalProfile(),
+                HospitalProfile(
+                  user: widget.user,
+                ),
               ]
             : <Widget>[
                 BankHome(),
-                BankProfile(),
+                BankProfile(
+                  user: widget.user,
+                ),
               ];
 
     return SafeArea(
