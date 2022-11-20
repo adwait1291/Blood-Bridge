@@ -85,6 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
         'bloodGroup': bloodGroup,
         'gender': gender,
         'matchedDonor': null,
+        'matchedCentre': null,
         'donorTime': null,
         'receiverQuantity': null
       },

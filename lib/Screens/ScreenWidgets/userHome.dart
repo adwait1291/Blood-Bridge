@@ -22,10 +22,52 @@ class _UserHomeState extends State<UserHome> {
   List<String> receiverQuantity = ['1 unit', '2 unit', '3 unit', '4 unit'];
   String? quantity;
   var _isProcessing = false;
+
+  var statusDict = [
+    ["notActive.png", "Switch to donate or receive"],
+    ["receiver.png", "We are searching for a donor!"],
+    ["donor.png", "Thank you for being a donor!"],
+  ];
+
+  var centreMatched = "Unknown";
+  var userMatched = "Unknown";
+  void getUserData() async {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final currentUserData =
+        await FirebaseFirestore.instance.doc('users/' + uid!).get();
+
+    status = currentUserData['userChoice'];
+    updateStatus();
+    var centreIdMatched = currentUserData['matchedCentre'];
+    var userIdMatched = currentUserData['matchedDonor'];
+
+    if ((centreIdMatched != null)) {
+      final matchedCentreData = await FirebaseFirestore.instance
+          .doc('users/' + centreIdMatched)
+          .get();
+      centreMatched = matchedCentreData['name'];
+    } else {
+      centreMatched = "Unknown";
+    }
+
+    if ((userIdMatched != null)) {
+      final matchedUserData =
+          await FirebaseFirestore.instance.doc('users/' + userIdMatched).get();
+      userMatched = matchedUserData['name'];
+    } else {
+      userMatched = "Unknown";
+    }
+
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
   void _submitToDB() async {
-    setState(() {
-      _isProcessing = false;
-    });
     final curUser = FirebaseAuth.instance.currentUser;
 
     await FirebaseFirestore.instance
@@ -38,10 +80,38 @@ class _UserHomeState extends State<UserHome> {
         'donorTime': donorTime,
       },
     );
+    setState(() {});
+  }
 
-    setState(() {
-      _isProcessing = false;
-    });
+  void _setMatchToNull() async {
+    final curUser = FirebaseAuth.instance.currentUser;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(curUser!.uid)
+        .update(
+      {
+        'matchedDonor': null,
+        'matchedCentre': null,
+      },
+    );
+    setState(() {});
+  }
+
+  void updateStatus() {
+    if (status == 'Not Active') {
+      statusText = statusDict[0][1];
+      statusImage = statusDict[0][0];
+    }
+    if (status == 'Donor') {
+      statusText = statusDict[2][1];
+      statusImage = statusDict[2][0];
+    }
+    if (status == 'Receiver') {
+      statusText = statusDict[1][1];
+      statusImage = statusDict[1][0];
+    }
+    setState(() {});
   }
 
   void showDonorOptions() {
@@ -57,9 +127,10 @@ class _UserHomeState extends State<UserHome> {
                   onPressed: () {
                     setState(() {
                       status = "Donor";
-                      statusText = "Thank you for being a donor!";
-                      statusImage = "donor.png";
+                      updateStatus();
                       _submitToDB();
+                      _setMatchToNull();
+                      getUserData();
                       Navigator.of(context).pop();
                     });
                   },
@@ -88,9 +159,10 @@ class _UserHomeState extends State<UserHome> {
                   onPressed: () {
                     setState(() {
                       status = "Receiver";
-                      statusText = "We are searching for a donor!";
-                      statusImage = "receiver.png";
+                      updateStatus();
                       _submitToDB();
+                      _setMatchToNull();
+                      getUserData();
                       Navigator.of(context).pop();
                     });
                   },
@@ -149,9 +221,10 @@ class _UserHomeState extends State<UserHome> {
                 onPressed: () {
                   setState(() {
                     status = "Not Active";
-                    statusText = "Switch to donate or receive";
-                    statusImage = "notActive.png";
+                    updateStatus();
                     _submitToDB();
+                    _setMatchToNull();
+                    getUserData();
                   });
                 },
                 child: Container(
@@ -241,7 +314,15 @@ class _UserHomeState extends State<UserHome> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 1.h,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        getUserData();
+                      },
+                      child: Text("Refresh")),
+                  SizedBox(
+                    height: 1.h,
                   ),
                   Container(
                     width: double.infinity,
@@ -257,31 +338,44 @@ class _UserHomeState extends State<UserHome> {
                             offset: const Offset(0, 2)),
                       ],
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Opacity(
-                          opacity: 0.8,
-                          child: Image.asset(
-                            'assets/images/mainScreenImage.png',
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Text(
-                          "Please select donate or receive to see the options.",
-                          style: TextStyle(color: Colors.black54),
-                        )
-                      ],
-                    ),
+                    child: (userMatched == 'Unknown') |
+                            (userMatched == Null) |
+                            (status == 'Not Active')
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Opacity(
+                                opacity: 0.8,
+                                child: Image.asset(
+                                  'assets/images/mainScreenImage.png',
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              status == 'Not Active'
+                                  ? Text(
+                                      "Stay Healthy",
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                                  : status == 'Receiver'
+                                      ? Text(
+                                          "Donor Details will be shown here",
+                                          style:
+                                              TextStyle(color: Colors.black54),
+                                        )
+                                      : Text(
+                                          "Receiver Details will be shown here")
+                            ],
+                          )
+                        : Center(child: Text(userMatched)),
                   ),
                   SizedBox(
                     height: 15.h,
                   ),
                   Container(
                     width: double.infinity,
-                    height: 130.h,
+                    height: 100.h,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
                       borderRadius: BorderRadius.circular(15.r),
@@ -293,24 +387,30 @@ class _UserHomeState extends State<UserHome> {
                             offset: const Offset(0, 2)),
                       ],
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Opacity(
-                          opacity: 0.8,
-                          child: Image.asset(
-                            'assets/images/mainScreenImage2.png',
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        Text(
-                          "Donation centre details will be shown here.",
-                          style: TextStyle(color: Colors.black54),
-                        )
-                      ],
-                    ),
+                    child: (centreMatched == 'Unknown') |
+                            (centreMatched == Null) |
+                            (status == 'Not Active')
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Opacity(
+                                opacity: 0.8,
+                                child: Image.asset(
+                                  'assets/images/mainScreenImage2.png',
+                                ),
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              status == 'Not Active'
+                                  ? Text("Stay Healthy")
+                                  : Text(
+                                      "Donation centre details will be shown here.",
+                                      style: TextStyle(color: Colors.black54),
+                                    )
+                            ],
+                          )
+                        : Center(child: Text(centreMatched)),
                   ),
                 ],
               ),
