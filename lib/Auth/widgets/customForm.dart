@@ -17,6 +17,7 @@ class CustomForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: hintTextValue == 'Password',
       controller: TextController,
       focusNode: _focusEmail,
       validator: (value) {
@@ -28,8 +29,8 @@ class CustomForm extends StatelessWidget {
           return Validator.validatePassword(
             password: value,
           );
-        } else if (hintTextValue == 'Name') {
-          return Validator.validateName(
+        } else {
+          return Validator.validateField(
             name: value,
           );
         }
