@@ -46,13 +46,13 @@ class _HospitalProfileState extends State<HospitalProfile> {
                   Center(
                     child: CircleAvatar(
                       backgroundColor: Color(0xFFF8E1E7),
-                      radius: 80.r,
+                      radius: 70.r,
                       child: CircleAvatar(
                         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                        radius: 70.r,
+                        radius: 60.r,
                         child: Image.asset(
                           'assets/images/hospital-building.png',
-                          height: 50.h,
+                          height: 40.h,
                         ),
                       ),
                     ),

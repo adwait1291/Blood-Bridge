@@ -406,7 +406,7 @@ class _UserHomeState extends State<UserHome> {
                                   SizedBox(width: 30.w),
                                   Icon(Icons.person),
                                   SizedBox(width: 10.w),
-                                  Text(centreMatched),
+                                  Text(userMatched),
                                 ],
                               ),
                               Divider(),
