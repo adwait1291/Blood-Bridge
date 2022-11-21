@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ffi';
+
 import 'package:blood_bridge/Widgets/DropDown.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,7 +32,11 @@ class _UserHomeState extends State<UserHome> {
   ];
 
   var centreMatched = "Unknown";
+  var centerLoc = "Unknown";
+  var centreMob = "Unknown";
   var userMatched = "Unknown";
+  var userLoc = "Unknown";
+  var userMob = "Unknown";
   void getUserData() async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final currentUserData =
@@ -39,13 +45,15 @@ class _UserHomeState extends State<UserHome> {
     status = currentUserData['userChoice'];
     updateStatus();
     var centreIdMatched = currentUserData['matchedCentre'];
-    var userIdMatched = currentUserData['matchedDonor'];
+    var userIdMatched = currentUserData['matchedUser'];
 
     if ((centreIdMatched != null)) {
       final matchedCentreData = await FirebaseFirestore.instance
           .doc('users/' + centreIdMatched)
           .get();
       centreMatched = matchedCentreData['name'];
+      centerLoc = matchedCentreData['location'];
+      centreMob = matchedCentreData['mobileNo'];
     } else {
       centreMatched = "Unknown";
     }
@@ -54,6 +62,8 @@ class _UserHomeState extends State<UserHome> {
       final matchedUserData =
           await FirebaseFirestore.instance.doc('users/' + userIdMatched).get();
       userMatched = matchedUserData['name'];
+      userLoc = matchedUserData['location'];
+      userMob = matchedUserData['mobileNo'];
     } else {
       userMatched = "Unknown";
     }
@@ -91,7 +101,7 @@ class _UserHomeState extends State<UserHome> {
         .doc(curUser!.uid)
         .update(
       {
-        'matchedDonor': null,
+        'matchedUser': null,
         'matchedCentre': null,
       },
     );
@@ -368,7 +378,64 @@ class _UserHomeState extends State<UserHome> {
                                           "Receiver Details will be shown here")
                             ],
                           )
-                        : Center(child: Text(userMatched)),
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    status == 'Receiver'
+                                        ? "Matched Donor"
+                                        : "Matched Receiver",
+                                    style: TextStyle(
+                                        color: Color(0xFBD85585),
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 30.w),
+                                  Icon(Icons.person),
+                                  SizedBox(width: 10.w),
+                                  Text(centreMatched),
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: [
+                                  SizedBox(width: 30.w),
+                                  Icon(Icons.call),
+                                  SizedBox(width: 10.w),
+                                  Text(userMob),
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: [
+                                  SizedBox(width: 30.w),
+                                  Icon(Icons.location_pin),
+                                  SizedBox(width: 10.w),
+                                  Text(
+                                    userLoc.length > 20
+                                        ? userLoc.substring(0, 27) + "..."
+                                        : userLoc,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              )
+                            ],
+                          ),
                   ),
                   SizedBox(
                     height: 15.h,
@@ -410,7 +477,62 @@ class _UserHomeState extends State<UserHome> {
                                     )
                             ],
                           )
-                        : Center(child: Text(centreMatched)),
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Donation Centre",
+                                    style: TextStyle(
+                                        color: Color(0xFBD85585),
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 30.w),
+                                  Icon(Icons.local_hospital),
+                                  SizedBox(width: 10.w),
+                                  Text(centreMatched),
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: [
+                                  SizedBox(width: 30.w),
+                                  Icon(Icons.call),
+                                  SizedBox(width: 10.w),
+                                  Text(centreMob),
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: [
+                                  SizedBox(width: 30.w),
+                                  Icon(Icons.location_pin),
+                                  SizedBox(width: 10.w),
+                                  Text(
+                                    centerLoc.length > 20
+                                        ? centerLoc.substring(0, 27) + "..."
+                                        : centerLoc,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              )
+                            ],
+                          ),
                   ),
                 ],
               ),
