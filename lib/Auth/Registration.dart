@@ -23,8 +23,8 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _registerFormKey = GlobalKey<FormState>();
   bool isLastPage = false;
-  var gender = "";
-  var bloodGroup = "unknown";
+  var gender;
+  var bloodGroup;
   final List<String> genderList = [
     'Not Applicable',
     'Male',
@@ -73,23 +73,40 @@ class _RegisterPageState extends State<RegisterPage> {
             ? "Hospital"
             : "Blood Bank";
 
-    await FirebaseFirestore.instance.collection('users').doc(curUser!.uid).set(
-      {
-        'name': name,
-        'phone': email,
-        'location': location,
-        'mobileNo': mobile,
-        'userChoice': userChoice,
-        'whoAreYou': whoAreYou,
-        'age': age,
-        'bloodGroup': bloodGroup,
-        'gender': gender,
-        'matchedUser': null,
-        'matchedCentre': null,
-        'donorTime': null,
-        'receiverQuantity': null
-      },
-    );
+    whoAreYou == 'User'
+        ? await FirebaseFirestore.instance
+            .collection('users')
+            .doc(curUser!.uid)
+            .set(
+            {
+              'name': name,
+              'email': email,
+              'location': location,
+              'phone': mobile,
+              'userChoice': userChoice,
+              'whoAreYou': whoAreYou,
+              'age': age,
+              'bloodGroup': bloodGroup,
+              'gender': gender,
+              'matchedUser': null,
+              'matchedCentre': null,
+              'donorTime': null,
+              'receiverQuantity': null
+            },
+          )
+        : await FirebaseFirestore.instance
+            .collection('users')
+            .doc(curUser!.uid)
+            .set(
+            {
+              'name': name,
+              'email': email,
+              'location': location,
+              'mobileNo': mobile,
+              'whoAreYou': whoAreYou,
+              'matchedDonation': [],
+            },
+          );
 
     setState(() {
       _isProcessing = false;
