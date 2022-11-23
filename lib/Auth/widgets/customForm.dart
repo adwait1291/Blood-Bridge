@@ -5,15 +5,16 @@ import '../validator.dart';
 
 class CustomForm extends StatelessWidget {
   var TextController;
+  var hintTextValue;
 
   final _focusEmail = FocusNode();
   final _focusPassword = FocusNode();
 
-  final String hintTextValue;
   CustomForm({
     required this.hintTextValue,
     required this.TextController,
   });
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(

@@ -80,9 +80,8 @@ class _RegisterPageState extends State<RegisterPage> {
             .set(
             {
               'name': name,
-              'email': email,
               'location': location,
-              'phone': mobile,
+              'mobileNo': mobile,
               'userChoice': userChoice,
               'whoAreYou': whoAreYou,
               'age': age,
@@ -367,10 +366,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 Navigator.of(context)
                                                     .pushReplacement(
                                                   MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          MainScreen(
-                                                            user: user,
-                                                          )),
+                                                    builder: (context) =>
+                                                        MainScreen(
+                                                      user: user,
+                                                    ),
+                                                  ),
                                                 );
                                               }
                                             }

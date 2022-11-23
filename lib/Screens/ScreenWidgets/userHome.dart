@@ -20,7 +20,12 @@ class _UserHomeState extends State<UserHome> {
   var statusText = "Switch to donate or receive";
   var status = "Not Active";
   String? donorTime;
-  List<String> donorTimeOptions = ['00:00 - 23:59'];
+  List<String> donorTimeOptions = [
+    '00:00 - 6:00',
+    '06:00 - 12:00',
+    '12:00 - 18:00',
+    '18:00 - 24:00'
+  ];
   List<String> receiverQuantity = ['1 unit', '2 unit', '3 unit', '4 unit'];
   String? quantity;
   var _isProcessing = false;
@@ -32,12 +37,12 @@ class _UserHomeState extends State<UserHome> {
   ];
 
   var centreMatched = "Unknown";
-  var centerLoc = "Unknown";
+  var centreLoc = "Unknown";
   var centreMob = "Unknown";
   var userMatched = "Unknown";
   var userLoc = "Unknown";
   var userMob = "Unknown";
-  void getUserData() async {
+  Future<void> getUserData() async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final currentUserData =
         await FirebaseFirestore.instance.doc('users/' + uid!).get();
@@ -52,7 +57,7 @@ class _UserHomeState extends State<UserHome> {
           .doc('users/' + centreIdMatched)
           .get();
       centreMatched = matchedCentreData['name'];
-      centerLoc = matchedCentreData['location'];
+      centreLoc = matchedCentreData['location'];
       centreMob = matchedCentreData['mobileNo'];
     } else {
       centreMatched = "Unknown";
@@ -77,7 +82,7 @@ class _UserHomeState extends State<UserHome> {
     getUserData();
   }
 
-  void _submitToDB() async {
+  Future<void> _submitToDB() async {
     final curUser = FirebaseAuth.instance.currentUser;
 
     await FirebaseFirestore.instance
@@ -93,7 +98,7 @@ class _UserHomeState extends State<UserHome> {
     setState(() {});
   }
 
-  void _setMatchToNull() async {
+  Future<void> _setMatchToNull() async {
     final curUser = FirebaseAuth.instance.currentUser;
 
     await FirebaseFirestore.instance
@@ -129,26 +134,45 @@ class _UserHomeState extends State<UserHome> {
         context: context,
         builder: (context) => AlertDialog(
               actions: [
-                DropDown(
-                    items: donorTimeOptions,
-                    dropDownHandler: _handleDonorTime,
-                    text: "Select your preferred time"),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      status = "Donor";
-                      updateStatus();
-                      _submitToDB();
-                      _setMatchToNull();
-                      getUserData();
-                      Navigator.of(context).pop();
-                    });
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    child: Text(
-                      'Submit',
-                      textAlign: TextAlign.center,
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 20.h),
+                    child: DropDown(
+                        items: donorTimeOptions,
+                        dropDownHandler: _handleDonorTime,
+                        text: "Select your preferred time"),
+                  ),
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFF15F79),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.r),
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          status = "Donor";
+                          updateStatus();
+                          _submitToDB();
+                          _setMatchToNull();
+                          getUserData();
+                          Navigator.of(context).pop();
+                        });
+                      },
+                      child: Container(
+                        width: 50.w,
+                        child: Text(
+                          'Submit',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -161,26 +185,43 @@ class _UserHomeState extends State<UserHome> {
         context: context,
         builder: (context) => AlertDialog(
               actions: [
-                DropDown(
-                    items: receiverQuantity,
-                    dropDownHandler: _handleQuantity,
-                    text: "Select number of units"),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      status = "Receiver";
-                      updateStatus();
-                      _submitToDB();
-                      _setMatchToNull();
-                      getUserData();
-                      Navigator.of(context).pop();
-                    });
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    child: Text(
-                      'Submit',
-                      textAlign: TextAlign.center,
+                Padding(
+                  padding: EdgeInsets.only(top: 22.h),
+                  child: DropDown(
+                      items: receiverQuantity,
+                      dropDownHandler: _handleQuantity,
+                      text: "Select number of units"),
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFF15F79),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.r),
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          status = "Receiver";
+                          updateStatus();
+                          _submitToDB();
+                          _setMatchToNull();
+                          getUserData();
+                          Navigator.of(context).pop();
+                        });
+                      },
+                      child: Container(
+                        width: 50.w,
+                        child: Text(
+                          'Submit',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -201,61 +242,82 @@ class _UserHomeState extends State<UserHome> {
       context: context,
       builder: (context) => AlertDialog(
         actions: [
-          Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  showDonorOptions();
-                },
-                child: Container(
-                  width: double.infinity,
-                  child: Text(
-                    'Donate Blood',
-                    textAlign: TextAlign.center,
+          Container(
+            width: 400.w,
+            child: Column(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFF15F79),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                  ),
+                  onPressed: () {
+                    showDonorOptions();
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    child: Text(
+                      'Donate Blood',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showReceiverOptions();
-                },
-                child: Container(
-                  width: double.infinity,
-                  child: Text(
-                    'Receive Blood',
-                    textAlign: TextAlign.center,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFF15F79),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                  ),
+                  onPressed: () {
+                    showReceiverOptions();
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    child: Text(
+                      'Receive Blood',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    status = "Not Active";
-                    updateStatus();
-                    _submitToDB();
-                    _setMatchToNull();
-                    getUserData();
-                  });
-                },
-                child: Container(
-                  width: double.infinity,
-                  child: Text(
-                    'Not Available',
-                    textAlign: TextAlign.center,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFF15F79),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      status = "Not Active";
+                      updateStatus();
+                      _submitToDB();
+                      _setMatchToNull();
+                      getUserData();
+                    });
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    child: Text(
+                      'Not Available',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Container(
-                  width: double.infinity,
-                  child: Text(
-                    'Done',
-                    textAlign: TextAlign.right,
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Container(
+                    width: double.infinity,
+                    child: Text(
+                      'Done',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),
@@ -327,8 +389,8 @@ class _UserHomeState extends State<UserHome> {
                     height: 1.h,
                   ),
                   TextButton(
-                      onPressed: () {
-                        getUserData();
+                      onPressed: () async {
+                        await getUserData();
                       },
                       child: Text("Refresh")),
                   SizedBox(
@@ -522,9 +584,9 @@ class _UserHomeState extends State<UserHome> {
                                   Icon(Icons.location_pin),
                                   SizedBox(width: 10.w),
                                   Text(
-                                    centerLoc.length > 20
-                                        ? centerLoc.substring(0, 27) + "..."
-                                        : centerLoc,
+                                    centreLoc.length > 20
+                                        ? centreLoc.substring(0, 27) + "..."
+                                        : centreLoc,
                                   ),
                                 ],
                               ),

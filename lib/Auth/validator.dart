@@ -5,7 +5,7 @@ class Validator {
     }
 
     if (name.isEmpty) {
-      return 'This Field can\'t be empty';
+      return 'This field can\'t be empty';
     }
 
     return null;

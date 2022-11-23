@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,10 +17,11 @@ class DropDown extends StatefulWidget {
 }
 
 class _DropDownState extends State<DropDown> {
-  var selectedValue;
-
   @override
   Widget build(BuildContext context) {
+    var selectedValue = widget.items[0];
+    widget.dropDownHandler(selectedValue);
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(

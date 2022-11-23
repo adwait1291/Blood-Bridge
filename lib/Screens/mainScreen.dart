@@ -71,12 +71,17 @@ class _MainScreenState extends State<MainScreen> {
                   user: widget.user,
                 ),
               ]
-            : <Widget>[
-                BankHome(),
-                BankProfile(
-                  user: widget.user,
-                ),
-              ];
+            : whoAreYou == 'Blood Bank'
+                ? <Widget>[
+                    BankHome(),
+                    BankProfile(
+                      user: widget.user,
+                    ),
+                  ]
+                : <Widget>[
+                    Center(child: CircularProgressIndicator()),
+                    Center(child: CircularProgressIndicator()),
+                  ];
 
     return SafeArea(
       child: Scaffold(
