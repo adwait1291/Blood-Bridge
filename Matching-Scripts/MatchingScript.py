@@ -79,7 +79,7 @@ for idD,i,_ in Donors:
     for idB,j in BloodBanks:
         new_x.append(idD)
         new_y.append(idB)
-        gmaps = googlemaps.Client(key='AIzaSyAsMoaOasUSqv9QE6Jtu7H1ZnkebDVyyIM')
+        gmaps = googlemaps.Client(key='YOUR_API_KEY')
         my_dist = gmaps.distance_matrix(i,j, departure_time = "now")
         if my_dist['rows'][0]['elements'][0]['status']=='OK':
             print("OK")
@@ -90,7 +90,7 @@ for idD,i,_ in Receivers:
     for idB,j in BloodBanks:
         new_x.append(idD)
         new_y.append(idB)
-        gmaps = googlemaps.Client(key='AIzaSyAsMoaOasUSqv9QE6Jtu7H1ZnkebDVyyIM')
+        gmaps = googlemaps.Client(key='YOUR_API_KEY')
         my_dist = gmaps.distance_matrix(i,j, departure_time = "now")
         if my_dist['rows'][0]['elements'][0]['status']=='OK':
             print("OK")
@@ -101,7 +101,7 @@ for idD,i,_ in Receivers:
     for idH,j in Hospitals:
         new_x.append(idD)
         new_y.append(idH)
-        gmaps = googlemaps.Client(key='AIzaSyAsMoaOasUSqv9QE6Jtu7H1ZnkebDVyyIM')
+        gmaps = googlemaps.Client(key='YOUR_API_KEY')
         my_dist = gmaps.distance_matrix(i,j, departure_time = "now")
         if my_dist['rows'][0]['elements'][0]['status']=='OK':
             print("OK")
