@@ -6,8 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:blood_bridge/Auth/Registration.dart';
 import 'package:blood_bridge/Screens/mainScreen.dart';
 
-import '../Unused files/profile.dart';
-
 class RegistrationOptions extends StatefulWidget {
   @override
   State<RegistrationOptions> createState() => _RegistrationOptionsState();

@@ -196,7 +196,7 @@ class _MenuPageState extends State<UserProfile> {
                     child: Image.asset(
                       'assets/images/profileImage.png',
                       colorBlendMode: BlendMode.color,
-                      height: 80.h,
+                      height: 70.h,
                     ),
                   ),
                   SizedBox(

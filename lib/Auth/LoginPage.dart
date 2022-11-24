@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:blood_bridge/Auth/fireAuth.dart';
 import 'package:blood_bridge/Auth/registrationOptions.dart';
 import 'package:blood_bridge/Screens/mainScreen.dart';
-import 'package:blood_bridge/Auth/widgets/customForm.dart';
+
+import '../Widgets/customForm.dart';
 
 class LoginPage extends StatefulWidget {
   @override

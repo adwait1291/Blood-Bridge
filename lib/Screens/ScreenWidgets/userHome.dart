@@ -19,16 +19,23 @@ class _UserHomeState extends State<UserHome> {
   var statusImage = "notActive.png";
   var statusText = "Switch to donate or receive";
   var status = "Not Active";
-  String? donorTime;
+  var donorTime = '00:00-23:59';
+  var quantity = "1 unit";
+  var centreMatched = "Unknown";
+  var centreLoc = "Unknown";
+  var centreMob = "Unknown";
+  var userMatched = "Unknown";
+  var userLoc = "Unknown";
+  var userMob = "Unknown";
+  var _isProcessing = false;
+
   List<String> donorTimeOptions = [
     '00:00 - 6:00',
     '06:00 - 12:00',
     '12:00 - 18:00',
-    '18:00 - 24:00'
+    '18:00 - 00:00'
   ];
   List<String> receiverQuantity = ['1 unit', '2 unit', '3 unit', '4 unit'];
-  String? quantity;
-  var _isProcessing = false;
 
   var statusDict = [
     ["notActive.png", "Switch to donate or receive"],
@@ -36,12 +43,6 @@ class _UserHomeState extends State<UserHome> {
     ["donor.png", "Thank you for being a donor!"],
   ];
 
-  var centreMatched = "Unknown";
-  var centreLoc = "Unknown";
-  var centreMob = "Unknown";
-  var userMatched = "Unknown";
-  var userLoc = "Unknown";
-  var userMob = "Unknown";
   Future<void> getUserData() async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final currentUserData =

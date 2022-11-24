@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DropDown extends StatefulWidget {
   Function dropDownHandler;
   var text;
+  var selectedValue;
   final List<String> items;
 
   DropDown({
@@ -19,9 +20,6 @@ class DropDown extends StatefulWidget {
 class _DropDownState extends State<DropDown> {
   @override
   Widget build(BuildContext context) {
-    var selectedValue = widget.items[0];
-    widget.dropDownHandler(selectedValue);
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(
@@ -31,7 +29,7 @@ class _DropDownState extends State<DropDown> {
       child: DropdownButtonHideUnderline(
         child: DropdownButton2(
           isExpanded: true,
-          value: selectedValue,
+          value: widget.selectedValue,
           hint: Text(widget.text, style: TextStyle(color: Colors.black54)),
           items: widget.items.map(
             (String items) {
@@ -51,8 +49,8 @@ class _DropDownState extends State<DropDown> {
           onChanged: (val) {
             setState(
               () {
-                selectedValue = val.toString();
-                widget.dropDownHandler(selectedValue);
+                widget.selectedValue = val.toString();
+                widget.dropDownHandler(widget.selectedValue);
               },
             );
           },

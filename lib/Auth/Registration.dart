@@ -1,6 +1,5 @@
 import 'dart:ffi';
 
-import 'package:blood_bridge/Auth/widgets/customForm.dart';
 import 'package:blood_bridge/Screens/mainScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../Widgets/DropDown.dart';
+import '../Widgets/customForm.dart';
 import 'fireAuth.dart';
 import 'loginPage.dart';
 
@@ -23,8 +23,8 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _registerFormKey = GlobalKey<FormState>();
   bool isLastPage = false;
-  var gender;
-  var bloodGroup;
+  var gender = "Female";
+  var bloodGroup = "O+";
   final List<String> genderList = [
     'Not Applicable',
     'Male',
