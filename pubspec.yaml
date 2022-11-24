@@ -44,7 +44,13 @@ dependencies:
   cloud_firestore: ^4.0.5
   fluttertoast: ^8.1.1
   dropdown_button2: ^1.8.9
+  flutter_launcher_icons: ^0.11.0
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 21
 
 dev_dependencies:
   flutter_test:
