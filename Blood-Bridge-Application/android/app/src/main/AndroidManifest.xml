@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.blood_bridge">
    <application
-        android:label="blood_bridge"
+        android:label="Blood Bridge"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

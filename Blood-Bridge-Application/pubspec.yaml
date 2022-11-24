@@ -45,6 +45,7 @@ dependencies:
   fluttertoast: ^8.1.1
   dropdown_button2: ^1.8.9
   flutter_launcher_icons: ^0.11.0
+  flutter_dotenv: ^5.0.2
 
 flutter_icons:
   android: "launcher_icon"
@@ -82,6 +83,7 @@ flutter:
       - assets/images/
       - assets/logo.png
       - assets/login.png
+      - .env
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

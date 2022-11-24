@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">829371278833-ig4dih9kvqaah2k33d3knbul523rc1cc.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">829371278833</string>
+    <string name="google_api_key" translatable="false">AIzaSyACHVCEJw5rrxoVJHjZyRzxgYb-YPq38Cs</string>
+    <string name="google_app_id" translatable="false">1:829371278833:android:c8add1f618557690055050</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyACHVCEJw5rrxoVJHjZyRzxgYb-YPq38Cs</string>
+    <string name="google_storage_bucket" translatable="false">blood-bridge.appspot.com</string>
+    <string name="project_id" translatable="false">blood-bridge</string>
+</resources>

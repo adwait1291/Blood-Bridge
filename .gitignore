@@ -9,6 +9,8 @@
 .history
 .svn/
 migrate_working_dir/
+Blood-Bridge-Application/.env
+Blood-Bridge-Application/android/app/google-services.json
 
 # IntelliJ related
 *.iml
