@@ -3,13 +3,9 @@ import networkx as nx
 from networkx.algorithms import bipartite
 import matplotlib.pyplot as plt
 
-# from initial_graph import g
-
-
 def maxmatch(g, donar, receiver):
 
-    k = list(nx.maximal_matching(g))        # Halls Theorem
-    # print(k)
+    k = list(nx.maximal_matching(g))     
 
     g2 = nx.Graph()
 
@@ -19,7 +15,6 @@ def maxmatch(g, donar, receiver):
 
     nx.draw_networkx(g2, pos = nx.drawing.layout.bipartite_layout(g2, donar), width = 2)
 
-    # plt.savefig("final.png")
     plt.show()
 
     for i in range(len(k)):

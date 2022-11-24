@@ -47,13 +47,13 @@ HospitalsDF = pd.DataFrame(Hospitals, columns = ['UID', 'Location'])
 BloodBanksDF = pd.DataFrame(BloodBanks, columns = ['UID', 'Location'])
 
 
-from Graphs.main import csvtolist
+from Utils.CSVToList import csvtolist
 dons, recs = csvtolist(DonorsDF, ReceiversDF)
-from Graphs.regex import edgecreate
+from Utils.Regex import edgecreate
 edges = edgecreate(dons, recs)
-from Graphs.initial_graph import graph
+from Utils.InitialGraph import graph
 g = graph(dons, recs, edges)
-from Graphs.max_match import maxmatch
+from Utils.MaxMatch import maxmatch
 k = maxmatch(g, dons, recs)
 print(k)
 
