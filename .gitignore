@@ -12,6 +12,7 @@ migrate_working_dir/
 Blood-Bridge-Application/.env
 Blood-Bridge-Application/android/app/google-services.json
 Blood-Bridge-Application/build
+Blood-Bridge-Application/lib/firebase_options.dart
 
 # IntelliJ related
 *.iml
