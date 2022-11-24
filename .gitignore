@@ -11,6 +11,7 @@
 migrate_working_dir/
 Blood-Bridge-Application/.env
 Blood-Bridge-Application/android/app/google-services.json
+Blood-Bridge-Application/build
 
 # IntelliJ related
 *.iml
