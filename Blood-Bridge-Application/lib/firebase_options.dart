@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,21 +49,12 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDxQYWvPKjYaviGCP4vcTLvXAIJEJ9ivZw',
-    appId: '1:829371278833:web:6bb48f372406a371055050',
-    messagingSenderId: '829371278833',
-    projectId: 'blood-bridge',
-    authDomain: 'blood-bridge.firebaseapp.com',
-    storageBucket: 'blood-bridge.appspot.com',
-    measurementId: 'G-FW9QV7SNN0',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyACHVCEJw5rrxoVJHjZyRzxgYb-YPq38Cs',
     appId: '1:829371278833:android:c8add1f618557690055050',
     messagingSenderId: '829371278833',
     projectId: 'blood-bridge',
+    databaseURL: 'https://blood-bridge-default-rtdb.firebaseio.com',
     storageBucket: 'blood-bridge.appspot.com',
   );
 
@@ -66,16 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:829371278833:ios:9c0233a53162fc5c055050',
     messagingSenderId: '829371278833',
     projectId: 'blood-bridge',
-    storageBucket: 'blood-bridge.appspot.com',
-    iosClientId: '829371278833-ipnq0633k3frm7vh3kl9ie6ggdk1j35r.apps.googleusercontent.com',
-    iosBundleId: 'com.example.bloodBridge',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD2z7M8rpV8p-x0MpvjSJeD5OluKTDtKgE',
-    appId: '1:829371278833:ios:9c0233a53162fc5c055050',
-    messagingSenderId: '829371278833',
-    projectId: 'blood-bridge',
+    databaseURL: 'https://blood-bridge-default-rtdb.firebaseio.com',
     storageBucket: 'blood-bridge.appspot.com',
     iosClientId: '829371278833-ipnq0633k3frm7vh3kl9ie6ggdk1j35r.apps.googleusercontent.com',
     iosBundleId: 'com.example.bloodBridge',
