@@ -13,6 +13,7 @@ Blood-Bridge-Application/.env
 Blood-Bridge-Application/android/app/google-services.json
 Blood-Bridge-Application/build
 Blood-Bridge-Application/lib/firebase_options.dart
+Blood-Bridge-Application/ios/firebase_app_id_file.json
 
 # IntelliJ related
 *.iml
