@@ -436,12 +436,12 @@ class _UserHomeState extends State<UserHome> {
                                     )
                                   : status == 'Receiver'
                                       ? Text(
-                                          "Donor Details will be shown here",
+                                          "Donor details will be shown here",
                                           style:
                                               TextStyle(color: Colors.black54),
                                         )
                                       : Text(
-                                          "Receiver Details will be shown here")
+                                          "Receiver details will be shown here")
                             ],
                           )
                         : Column(
