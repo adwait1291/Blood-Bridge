@@ -367,7 +367,10 @@ class _UserHomeState extends State<UserHome> {
                                   height: 20.h,
                                 ),
                               ),
-                              Text(statusText),
+                              Text(
+                                statusText,
+                                textScaleFactor: 0.8.w,
+                              ),
                               ElevatedButton(
                                 onPressed: () {
                                   switchDialog();
