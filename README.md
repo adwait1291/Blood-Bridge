@@ -13,7 +13,8 @@ An android app that connects blood donors with those in need.
 <img src="https://user-images.githubusercontent.com/76807214/204096566-2f2b30e3-c526-4c56-938c-bdcdb4f05abf.jpeg" width="192" height="426.66">
  &nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096629-ef2d2312-df26-4b4c-81d1-6b44d849bc36.jpeg" width="192" height="426.66">
- <br>
+ &nbsp;
+
 <img src="https://user-images.githubusercontent.com/76807214/204096643-4bb35f6b-e391-44b9-ab91-09327dd087cd.jpeg" width="192" height="426.66">
  &nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096646-7b6bccb0-05b5-4a9c-a0f3-4fe1999bb05c.jpeg" width="192" height="426.66">
