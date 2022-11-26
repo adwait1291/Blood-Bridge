@@ -1,7 +1,7 @@
 # Blood-Bridge
 An android app that connects blood donors with those in need.
 <br>
-# Screenshots
+# Snapshots
 <br>
 <p style = "float:left"> 
 <img src="https://user-images.githubusercontent.com/76807214/204096499-5c7acb4f-94cd-4bf6-8ce6-a49a7c65602c.jpeg" width="192" height="426.66">&nbsp;
@@ -16,5 +16,6 @@ An android app that connects blood donors with those in need.
 <h1> Credits</h1>
 <p>Icons: https://www.flaticon.com/<br>
 Images: https://slidesgo.com/</p>
+<br>
 <br>
 
