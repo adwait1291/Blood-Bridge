@@ -14,5 +14,9 @@ An android app that connects blood donors with those in need.
 <img src="https://user-images.githubusercontent.com/76807214/204096655-9fd7c96c-e6cf-4e9b-8987-640f0990eabc.jpeg" width="192" height="426.66">&nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096551-55e3f3e5-7620-43af-a40e-a246425c7ca6.jpeg" width="192" height="426.66">&nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096566-2f2b30e3-c526-4c56-938c-bdcdb4f05abf.jpeg" width="192" height="426.66">&nbsp;
-
 </p>
+<h1> Credits</h1>
+<p>Icons: https://www.flaticon.com/<br>
+Images: https://slidesgo.com/</p>
+<br>
+
