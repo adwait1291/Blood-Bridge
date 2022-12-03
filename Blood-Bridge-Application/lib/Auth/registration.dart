@@ -178,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   SizedBox(height: 10.h),
                                   Container(
                                     width: double.infinity,
-                                    child: Text("Addres"),
+                                    child: Text("Address"),
                                   ),
                                   CustomForm(
                                     hintTextValue: "Address",

@@ -22,7 +22,7 @@ class _MenuPageState extends State<UserProfile> {
   String location = 'unknown';
   String age = "unknown";
   String gender = "";
-  void getUserData() async {
+  getUserData() async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     final currentUserData =
         await FirebaseFirestore.instance.doc('users/' + uid!).get();
