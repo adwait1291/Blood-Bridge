@@ -12,6 +12,8 @@
 <img src="https://user-images.githubusercontent.com/76807214/204096661-2dddbda4-12a8-4c1e-a36e-13380828067c.jpeg" width="192" height="426.66">&nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096655-9fd7c96c-e6cf-4e9b-8987-640f0990eabc.jpeg" width="192" height="426.66">&nbsp;
 </p>
+<h1>Contact</h1>
+<p>If you have any questions or issues with the project, please don't hesitate to reach out to me. You can contact me via email at adwait1291@gmail.com</p>
 <h1> Credits</h1>
 <p>Icons: https://www.flaticon.com/<br>
 Images: https://slidesgo.com/</p>
