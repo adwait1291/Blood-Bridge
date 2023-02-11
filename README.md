@@ -15,7 +15,17 @@
 <h1>Contact</h1>
 <p>If you have any questions or issues with the project, please don't hesitate to reach out to me. You can contact me via email at adwait1291@gmail.com
 
+<h1>Steps to run this project</h1>
+<p>
+  To run the Blood-Bridge app, follow these steps:
 
+<li>Install and set up Flutter on your PC. You can find the installation guide on the Flutter website.
+
+<li>Create a Firebase project and connect it with the app. Go to the Firebase website and sign up for an account if you don't already have one. Once you're logged in, create a new project and follow the instructions to connect it with the Blood-Bridge app.
+
+<li>Run MatchingScript.py after giving the correct path of the credential file downloaded from the Firebase project. To do this, open the script in a Python editor and change the path of the credential file to the location where you saved it on your PC. Then, run the script to connect the Blood-Bridge app with your Firebase project.
+
+Once these steps are completed, you should be able to run the Blood-Bridge app on your PC. If you run into any issues, don't hesitate to ask for help.
 <h1> Credits</h1>
 <p>Icons: https://www.flaticon.com/<br>
 Images: https://slidesgo.com/</p>
