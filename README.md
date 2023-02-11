@@ -23,7 +23,7 @@
 
 <li>Create a Firebase project and connect it with the app. Go to the Firebase website and sign up for an account if you don't already have one. Once you're logged in, create a new project and follow the instructions to connect it with the Blood-Bridge app.
 
-<li>Run MatchingScript.py after giving the correct path of the credential file downloaded from the Firebase project. To do this, open the script in a Python editor and change the path of the credential file to the location where you saved it on your PC. Then, run the script to connect the Blood-Bridge app with your Firebase project.
+<li>Run MatchingScript.py after giving the correct path of the credential file downloaded from the Firebase project. To do this, open the script in a Python editor and change the path of the credential file to the location where you saved it on your PC. Then, run the script to match donors with receivers.
 
 Once these steps are completed, you should be able to run the Blood-Bridge app on your PC. If you run into any issues, don't hesitate to ask for help.
 <h1> Credits</h1>
