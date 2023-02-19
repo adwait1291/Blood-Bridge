@@ -12,8 +12,6 @@
 <img src="https://user-images.githubusercontent.com/76807214/204096661-2dddbda4-12a8-4c1e-a36e-13380828067c.jpeg" width="192" height="426.66">&nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096655-9fd7c96c-e6cf-4e9b-8987-640f0990eabc.jpeg" width="192" height="426.66">&nbsp;
 </p>
-<h1>Contact</h1>
-<p>If you have any questions or issues with the project, please don't hesitate to reach out to me. You can contact me via email at adwait1291@gmail.com
 
 <h1>Steps to run this project</h1>
 <p>
@@ -26,6 +24,10 @@
 <li>Run MatchingScript.py after giving the correct path of the credential file downloaded from the Firebase project. To do this, open the script in a Python editor and change the path of the credential file to the location where you saved it on your PC. Then, run the script to match donors with receivers.
 
 Once these steps are completed, you should be able to run the Blood-Bridge app on your PC. If you run into any issues, don't hesitate to ask for help.
+
+<h1>Contact</h1>
+<p>If you have any questions or issues with the project, please don't hesitate to reach out to me. You can contact me via email at adwait1291@gmail.com
+
 <h1> Credits</h1>
 <p>Icons: https://www.flaticon.com/<br>
 Images: https://slidesgo.com/</p>
