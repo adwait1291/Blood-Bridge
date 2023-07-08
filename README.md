@@ -25,6 +25,26 @@
 
 Once these steps are completed, you should be able to run the Blood-Bridge app on your PC. If you run into any issues, don't hesitate to ask for help.
 
+
+## Database Structure
+
+BloodBridge
+  - users
+    - age {String}
+    - bloodGroup {String}
+    - donorTime {String}
+    - gender {String}
+    - location {String}
+    - matchedCentre {String}
+    - matchedUser {String}
+    - mobileNo {String}
+    - name {String}
+    - receiverQuantity {String}
+    - userChoice {String}
+    - whoAreYou {String}
+
+
+
 <h1>Contact</h1>
 <p>If you have any questions or issues with the project, please don't hesitate to reach out to me. You can contact me via email at adwait1291@gmail.com
 
