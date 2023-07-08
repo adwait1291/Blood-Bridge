@@ -1,9 +1,7 @@
-
 import networkx as nx
 import matplotlib.pyplot as plt
 
 def graph(donar, receiver, edges):
-
     g = nx.Graph()
 
     g.add_nodes_from(donar, bipartite=0)
