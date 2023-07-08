@@ -1,10 +1,8 @@
-
 import networkx as nx
 from networkx.algorithms import bipartite
 import matplotlib.pyplot as plt
 
 def maxmatch(g, donar, receiver):
-
     k = list(nx.maximal_matching(g))     
 
     g2 = nx.Graph()
