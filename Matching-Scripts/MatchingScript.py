@@ -1,8 +1,10 @@
+# Import necessary libraries
 import pandas as pd
 import networkx as net
-
-
 import firebase_admin
+
+
+# Connect to firebase
 from firebase_admin import credentials, firestore
 cred = credentials.Certificate("Path to JSON file")
 firebase_admin.initialize_app(cred)
@@ -13,6 +15,7 @@ collection = db.collection('users')
 document = collection.get()
 
 
+# Get all the UIDs
 UID = []
 for i in document:
     UID.append(i.id)
@@ -47,10 +50,15 @@ HospitalsDF = pd.DataFrame(Hospitals, columns = ['UID', 'Location'])
 BloodBanksDF = pd.DataFrame(BloodBanks, columns = ['UID', 'Location'])
 
 
+# Get a list of UIDs of donors and receiver concatenated with their blood group to create all the possible edges
 from Utils.CSVToList import csvtolist
 dons, recs = csvtolist(DonorsDF, ReceiversDF)
+
+# Create edges using Regex
 from Utils.Regex import edgecreate
 edges = edgecreate(dons, recs)
+
+# Create the graph
 from Utils.InitialGraph import graph
 g = graph(dons, recs, edges)
 from Utils.MaxMatch import maxmatch
