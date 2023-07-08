@@ -58,9 +58,11 @@ dons, recs = csvtolist(DonorsDF, ReceiversDF)
 from Utils.Regex import edgecreate
 edges = edgecreate(dons, recs)
 
-# Create the graph
+# Create the graph using networkx
 from Utils.InitialGraph import graph
 g = graph(dons, recs, edges)
+
+# Get the matching edges using the algorithm from networkx
 from Utils.MaxMatch import maxmatch
 k = maxmatch(g, dons, recs)
 print(k)
