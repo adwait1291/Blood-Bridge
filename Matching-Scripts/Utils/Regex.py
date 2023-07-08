@@ -2,7 +2,6 @@ import re
 import random
 
 def edgecreate(donar, receiver):
-
     edges = []
 
     for i in donar:
