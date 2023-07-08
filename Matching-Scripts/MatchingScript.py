@@ -2,6 +2,7 @@
 import pandas as pd
 import networkx as net
 import firebase_admin
+import googlemaps
 
 
 # Connect to firebase
@@ -31,16 +32,16 @@ for uid in UID:
     doc = collection.document(uid)
     res = doc.get().to_dict()
     if res['whoAreYou']=='Hospital':
-        print('Hospital')
+        # print('Hospital')
         Hospitals.append([uid, res['location']])
     elif res['whoAreYou']=='User':
         if res['userChoice'] == 'Donor':
             Donors.append([uid, res['location'], res['bloodGroup']] )
         if res['userChoice'] == 'Receiver':
             Receivers.append([uid, res['location'],res['bloodGroup']] )
-        print('User')
+        # print('User')
     else:
-        print('Blood Bank')
+        # print('Blood Bank')
         BloodBanks.append([uid, res['location']])
 
 
@@ -65,15 +66,16 @@ g = graph(dons, recs, edges)
 # Get the matching edges using the algorithm from networkx
 from Utils.MaxMatch import maxmatch
 k = maxmatch(g, dons, recs)
-print(k)
+# print(k)
 
 
+# To Create a weighted graph for distance
 new_x = []
 new_y = []
 distance = []
 
 
-import googlemaps
+# Get distance between Donors and Hospitals
 for idD,i,_ in Donors:
     for idH,j in Hospitals:
         new_x.append(idD)
@@ -81,10 +83,11 @@ for idD,i,_ in Donors:
         gmaps = googlemaps.Client(key='YOUR_API_KEY')
         my_dist = gmaps.distance_matrix(i,j, departure_time = "now")
         if my_dist['rows'][0]['elements'][0]['status']=='OK':
-            print("OK")
+            # print("OK")
             distance.append(my_dist['rows'][0]['elements'][0]['distance']['value'])        
 
 
+# Get distance between Donors and BloodBanks
 for idD,i,_ in Donors:
     for idB,j in BloodBanks:
         new_x.append(idD)
@@ -92,10 +95,11 @@ for idD,i,_ in Donors:
         gmaps = googlemaps.Client(key='YOUR_API_KEY')
         my_dist = gmaps.distance_matrix(i,j, departure_time = "now")
         if my_dist['rows'][0]['elements'][0]['status']=='OK':
-            print("OK")
+            # print("OK")
             distance.append(my_dist['rows'][0]['elements'][0]['distance']['value'])   
 
 
+# Get distance between Receivers and BloodBanks
 for idD,i,_ in Receivers:
     for idB,j in BloodBanks:
         new_x.append(idD)
@@ -103,10 +107,11 @@ for idD,i,_ in Receivers:
         gmaps = googlemaps.Client(key='YOUR_API_KEY')
         my_dist = gmaps.distance_matrix(i,j, departure_time = "now")
         if my_dist['rows'][0]['elements'][0]['status']=='OK':
-            print("OK")
+            # print("OK")
             distance.append(my_dist['rows'][0]['elements'][0]['distance']['value'])   
 
 
+# Get distance between Receivers and Hospitals
 for idD,i,_ in Receivers:
     for idH,j in Hospitals:
         new_x.append(idD)
@@ -114,18 +119,17 @@ for idD,i,_ in Receivers:
         gmaps = googlemaps.Client(key='YOUR_API_KEY')
         my_dist = gmaps.distance_matrix(i,j, departure_time = "now")
         if my_dist['rows'][0]['elements'][0]['status']=='OK':
-            print("OK")
+            # print("OK")
             distance.append(my_dist['rows'][0]['elements'][0]['distance']['value'])   
 
 
-Graph = pd.DataFrame(list(zip(new_x, new_y, distance)),
-               columns =['V1', 'V2', 'distance'])
-
-
+# Create the weighted graph with distance as weights
+Graph = pd.DataFrame(list(zip(new_x, new_y, distance)), columns =['V1', 'V2', 'distance'])
 G=net.from_pandas_edgelist(Graph, 'V1', 'V2', ['distance'])
 
 
-def find_donar_or_blood_bank(reciever,donor):
+# Function to find the best hospital or blood bank for donation
+def find_hospital_or_blood_bank(reciever,donor):
     subGraphList = [n for n in net.all_neighbors(G,donor)]
     subGraphList.append(reciever)
     subGraphList.append(donor)
@@ -133,8 +137,9 @@ def find_donar_or_blood_bank(reciever,donor):
     result = net.shortest_path(H,reciever,donor,weight='weight')
     return result[1]
 
+# Function to update the database with the found matches
 def setMatches(donor, receiver):
-    matchedCentre = find_donar_or_blood_bank(donor, receiver)
+    matchedCentre = find_hospital_or_blood_bank(donor, receiver)
 
     collection.document(receiver).update({
         'matchedCentre': matchedCentre
