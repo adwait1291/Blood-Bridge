@@ -1,8 +1,8 @@
 <h1> Blood-Bridge</h1>
-<p> An android app that connects blood donors with those in need.</p>
-<br>
+<p>Blood-Bridge is a mobile application developed to facilitate the efficient matching of blood donors with receivers using a bipartite maximal matching algorithm. The primary objective of the application is to ensure that the maximum number of people in need of blood receive timely assistance, while also suggesting the best possible donation centre, based on proximity to both the donor and the receiver. For more details, please refer to the presentation and the sections below.</p>
+
 <h1> Snapshots</h1>
-<p style = "float:left"> 
+<p style = "float:left">
 <img src="https://user-images.githubusercontent.com/76807214/204096499-5c7acb4f-94cd-4bf6-8ce6-a49a7c65602c.jpeg" width="192" height="426.66">&nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096551-55e3f3e5-7620-43af-a40e-a246425c7ca6.jpeg" width="192" height="426.66">&nbsp;
 <img src="https://user-images.githubusercontent.com/76807214/204096629-ef2d2312-df26-4b4c-81d1-6b44d849bc36.jpeg" width="192" height="426.66">&nbsp;
