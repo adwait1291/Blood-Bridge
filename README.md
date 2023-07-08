@@ -40,16 +40,16 @@ BloodBridge
   - users
     - age {String}
     - bloodGroup {String}
-    - donorTime {String}
+    - donorTime {String} // (Donor's availability)
     - gender {String}
     - location {String}
     - matchedCentre {String}
     - matchedUser {String}
     - mobileNo {String}
     - name {String}
-    - receiverQuantity {String}
-    - userChoice {String}
-    - whoAreYou {String}
+    - receiverQuantity {String} // (How much blood is required/available?)
+    - userChoice {String} // (Donor/ Receiver/ Not Available)
+    - whoAreYou {String} // (Hospital/ Blood Bank/ User) 
 
 
 
